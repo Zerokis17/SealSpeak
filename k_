@@ -1,0 +1,1454 @@
+[33mcommit 678876a77195f6ea4214b2789bd83c91542748b1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Thu May 14 21:45:54 2026 -0500
+
+    Chatbot funcional
+
+ .gitignore | 6 [32m+++++[m[31m-[m
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+[33mcommit e25599f627a89ce0f1ef421077dbe9f62234dcb0[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Thu May 14 21:40:15 2026 -0500
+
+    Chatbot funcional
+
+ app/build.gradle.kts                               |     6 [32m+[m[31m-[m
+ .../sealspeak/databinding/FragmentChatBinding.java |    91 [32m+[m
+ .../databinding/ItemMessageBotBinding.java         |    68 [32m+[m
+ .../databinding/ItemMessageUserBinding.java        |    68 [32m+[m
+ .../debug/com/example/sealspeak/BuildConfig.java   |     2 [32m+[m
+ .../debug/navigation/nav_graph.xml                 |     4 [32m+[m
+ app/build/intermediates/apk/debug/app-debug.apk    |   Bin [31m11891589[m -> [32m14767282[m bytes
+ .../example/sealspeak/ChatAdapter$ViewHolder.class |   Bin [31m0[m -> [32m1749[m bytes
+ .../com/example/sealspeak/ChatAdapter.class        |   Bin [31m0[m -> [32m3829[m bytes
+ ...ChatFragment$sendMessage$2$responseText$1.class |   Bin [31m0[m -> [32m3182[m bytes
+ .../sealspeak/ChatFragment$sendMessage$2.class     |   Bin [31m0[m -> [32m5938[m bytes
+ .../com/example/sealspeak/ChatFragment.class       |   Bin [31m0[m -> [32m14556[m bytes
+ .../com/example/sealspeak/ChatMessage.class        |   Bin [31m0[m -> [32m2764[m bytes
+ .../VideoLessonActivity$loadLesson$1$1.class       |   Bin [31m2963[m -> [32m0[m bytes
+ .../VideoLessonActivity$setupPlayer$1.class        |   Bin [31m0[m -> [32m2432[m bytes
+ .../example/sealspeak/VideoLessonActivity.class    |   Bin [31m9342[m -> [32m11721[m bytes
+ .../debug/processDebugResources/R.jar              |   Bin [31m996634[m -> [32m893707[m bytes
+ .../debug/generateDebugRFile/R.jar                 |   Bin [31m8309[m -> [32m8643[m bytes
+ .../debug/generateDebugRFile/R.txt                 |    11 [32m+[m
+ .../navigation_nav_graph.xml.flat                  |   Bin [31m1612[m -> [32m1888[m bytes
+ .../out/com.example.sealspeak-binding_classes.json |   Bin [31m11144[m -> [32m12506[m bytes
+ .../out/activity_video_lesson-layout.xml           |     2 [32m+[m[31m-[m
+ .../out/fragment_chat-layout.xml                   |     1 [32m+[m
+ .../out/item_message_bot-layout.xml                |     1 [32m+[m
+ .../out/item_message_user-layout.xml               |     1 [32m+[m
+ .../out/activity_video_lesson-layout.xml           |     2 [32m+[m[31m-[m
+ .../out/fragment_chat-layout.xml                   |     1 [32m+[m
+ .../out/item_message_bot-layout.xml                |     1 [32m+[m
+ .../out/item_message_user-layout.xml               |     1 [32m+[m
+ .../dex/debug/mergeExtDexDebug/classes3.dex        |   Bin [31m6421452[m -> [32m7490800[m bytes
+ .../dex/debug/mergeProjectDexDebug/0/classes.dex   |   Bin [31m605928[m -> [32m576088[m bytes
+ .../dex/debug/mergeProjectDexDebug/13/classes.dex  |   Bin [31m23504[m -> [32m25720[m bytes
+ .../dex/debug/mergeProjectDexDebug/9/classes.dex   |   Bin [31m83980[m -> [32m101140[m bytes
+ .../debug/dexBuilderDebug/out                      |   Bin [31m383[m -> [32m383[m bytes
+ .../base_builder_log.json                          |   Bin [31m11826[m -> [32m13260[m bytes
+ .../incremental/debug-mergeJavaRes/merge-state     |   Bin [31m19189[m -> [32m24271[m bytes
+ .../zip-cache/+zRq+C+xW8YlRFIkzXkz2g==             |     1 [32m+[m
+ .../zip-cache/0Wu9wEhkFbPEYB9D9Utthg==             |     1 [32m+[m
+ .../zip-cache/1GLvFNsHa+TOYJDqSguBKQ==             |     1 [32m+[m
+ .../zip-cache/1oMCx_iAffGyeAbXT276Dw==             |     1 [32m+[m
+ .../zip-cache/1zQAybs1CNV2s4lrq00NEA==             |     1 [32m+[m
+ .../zip-cache/2mJIUAq4Ldc8SaEoje7MmA==             |     1 [32m+[m
+ .../zip-cache/7oeg2+62y3XRuWeFBvpVag==             |     1 [32m+[m
+ .../zip-cache/AhohQqzn6H8K3Rj4Yh5Hkw==             |     1 [32m+[m
+ .../zip-cache/AiIDrgU07boIPMWZ+cjerw==             |     1 [32m+[m
+ .../zip-cache/CZr31ViJk82jZfYHiAXIZw==             |     1 [32m+[m
+ .../zip-cache/CujWPQQCcMwNga5kuvWrOQ==             |     1 [32m+[m
+ .../zip-cache/GlEu38fXIx22iwQsto3yow==             |     1 [32m+[m
+ .../zip-cache/ImsxBbPmlLOexNDdDDC99A==             |     1 [32m+[m
+ .../zip-cache/JrDv4xIUukChEXGgXv2Yqg==             |     1 [32m+[m
+ .../zip-cache/JttQH23rz5lML4Az6nQ_Zw==             |     1 [32m+[m
+ .../zip-cache/M4M7DiceHoj7M4vxJXzL2A==             |     1 [32m+[m
+ .../zip-cache/MWiXbXn_rhCCBX4OHzCWcg==             |     1 [32m+[m
+ .../zip-cache/NXsHN2cmyZGyx0krIRcxLw==             |     1 [32m+[m
+ .../zip-cache/QGXJ7Bxkzavk6rQSPGfqiw==             |     1 [32m+[m
+ .../zip-cache/QQ9ZFGXWsYWuBW0u9uQM5A==             |     1 [32m+[m
+ .../zip-cache/R8UkJthTfZO5cgQEG_rG6w==             |     1 [32m+[m
+ .../zip-cache/UmNPhbcHqPqYHuQUdaD1wQ==             |     1 [32m+[m
+ .../zip-cache/XNWnM_zkTHadkUdVlnadzQ==             |     1 [32m+[m
+ .../zip-cache/aI+b+2FXzz8NHjwApoVezA==             |     1 [32m+[m
+ .../zip-cache/cXP09Kex94NxbIxWUNlkOQ==             |     1 [32m+[m
+ .../zip-cache/d7is+OtqnvRiVKcZShZfiA==             |     1 [32m+[m
+ .../zip-cache/l3f_S0RCNDnRjKtJ75Av4A==             |     1 [32m+[m
+ .../zip-cache/lhJv04ruOz007iUzWXs_sg==             |     1 [32m+[m
+ .../zip-cache/rgLsiN4CM8Gz9s9+HPypKg==             |     1 [32m+[m
+ .../zip-cache/xoB+gcBvkSdOpA21Cs8ACg==             |     1 [32m+[m
+ .../zip-cache/y2u_Y5mXti2oYpqU2EsrRg==             |     1 [32m+[m
+ .../zip-cache/ymnz4uU_IeVW4lt5HjPUkw==             |     1 [32m+[m
+ .../zip-cache/zdTEgsS2HGVTM8SnbaYISw==             |     1 [32m+[m
+ .../compile-file-map.properties                    |     8 [32m+[m[31m-[m
+ .../merged.dir/values-af/values-af.xml             |   149 [32m+[m
+ .../merged.dir/values-am/values-am.xml             |   149 [32m+[m
+ .../merged.dir/values-ar/values-ar.xml             |   154 [32m+[m
+ .../merged.dir/values-as/values-as.xml             |   149 [32m+[m
+ .../merged.dir/values-az/values-az.xml             |   149 [32m+[m
+ .../merged.dir/values-b+es+419/values-b+es+419.xml |    87 [32m+[m
+ .../values-b+sr+Latn/values-b+sr+Latn.xml          |   150 [32m+[m
+ .../merged.dir/values-be/values-be.xml             |   151 [32m+[m
+ .../merged.dir/values-bg/values-bg.xml             |   149 [32m+[m
+ .../merged.dir/values-bn/values-bn.xml             |   149 [32m+[m
+ .../merged.dir/values-bs/values-bs.xml             |   150 [32m+[m
+ .../merged.dir/values-ca/values-ca.xml             |   149 [32m+[m
+ .../merged.dir/values-cs/values-cs.xml             |   151 [32m+[m
+ .../merged.dir/values-da/values-da.xml             |   149 [32m+[m
+ .../merged.dir/values-de/values-de.xml             |   149 [32m+[m
+ .../merged.dir/values-el/values-el.xml             |   149 [32m+[m
+ .../merged.dir/values-en-rAU/values-en-rAU.xml     |    47 [32m+[m
+ .../merged.dir/values-en-rCA/values-en-rCA.xml     |    45 [32m+[m
+ .../merged.dir/values-en-rGB/values-en-rGB.xml     |   149 [32m+[m
+ .../merged.dir/values-en-rIN/values-en-rIN.xml     |    47 [32m+[m
+ .../merged.dir/values-en-rXC/values-en-rXC.xml     |    45 [32m+[m
+ .../merged.dir/values-es-rUS/values-es-rUS.xml     |   149 [32m+[m
+ .../merged.dir/values-es/values-es.xml             |   149 [32m+[m
+ .../merged.dir/values-et/values-et.xml             |   149 [32m+[m
+ .../merged.dir/values-eu/values-eu.xml             |   149 [32m+[m
+ .../merged.dir/values-fa/values-fa.xml             |   149 [32m+[m
+ .../merged.dir/values-fi/values-fi.xml             |   149 [32m+[m
+ .../merged.dir/values-fr-rCA/values-fr-rCA.xml     |   149 [32m+[m
+ .../merged.dir/values-fr/values-fr.xml             |   149 [32m+[m
+ .../merged.dir/values-gl/values-gl.xml             |   149 [32m+[m
+ .../merged.dir/values-gu/values-gu.xml             |   149 [32m+[m
+ .../values-h320dp-port-v13.xml                     |     4 [32m+[m
+ .../values-h360dp-land-v13.xml                     |    12 [32m+[m
+ .../values-h480dp-land-v13.xml                     |    12 [32m+[m
+ .../values-h480dp-v13/values-h480dp-v13.xml        |     7 [32m+[m
+ .../values-h550dp-port-v13.xml                     |     4 [32m+[m
+ .../values-h720dp-v13/values-h720dp-v13.xml        |     4 [32m+[m
+ .../merged.dir/values-hdpi-v4/values-hdpi-v4.xml   |     8 [32m+[m
+ .../merged.dir/values-hi/values-hi.xml             |   149 [32m+[m
+ .../merged.dir/values-hr/values-hr.xml             |   150 [32m+[m
+ .../merged.dir/values-hu/values-hu.xml             |   149 [32m+[m
+ .../merged.dir/values-hy/values-hy.xml             |   149 [32m+[m
+ .../merged.dir/values-in/values-in.xml             |   149 [32m+[m
+ .../merged.dir/values-is/values-is.xml             |   149 [32m+[m
+ .../merged.dir/values-it/values-it.xml             |   149 [32m+[m
+ .../merged.dir/values-iw/values-iw.xml             |   150 [32m+[m
+ .../merged.dir/values-ja/values-ja.xml             |   149 [32m+[m
+ .../merged.dir/values-ka/values-ka.xml             |   149 [32m+[m
+ .../merged.dir/values-kk/values-kk.xml             |   149 [32m+[m
+ .../merged.dir/values-km/values-km.xml             |   149 [32m+[m
+ .../merged.dir/values-kn/values-kn.xml             |   149 [32m+[m
+ .../merged.dir/values-ko/values-ko.xml             |   149 [32m+[m
+ .../merged.dir/values-ky/values-ky.xml             |   149 [32m+[m
+ .../merged.dir/values-land/values-land.xml         |    43 [32m+[m
+ .../merged.dir/values-large-v4/values-large-v4.xml |    16 [32m+[m
+ .../values-ldltr-v21/values-ldltr-v21.xml          |     4 [32m+[m
+ .../values-ldrtl-v17/values-ldrtl-v17.xml          |     5 [32m+[m
+ .../merged.dir/values-lo/values-lo.xml             |   149 [32m+[m
+ .../merged.dir/values-lt/values-lt.xml             |   151 [32m+[m
+ .../merged.dir/values-lv/values-lv.xml             |   150 [32m+[m
+ .../merged.dir/values-mk/values-mk.xml             |   149 [32m+[m
+ .../merged.dir/values-ml/values-ml.xml             |   149 [32m+[m
+ .../merged.dir/values-mn/values-mn.xml             |   149 [32m+[m
+ .../merged.dir/values-mr/values-mr.xml             |   149 [32m+[m
+ .../merged.dir/values-ms/values-ms.xml             |   149 [32m+[m
+ .../merged.dir/values-my/values-my.xml             |   149 [32m+[m
+ .../merged.dir/values-nb/values-nb.xml             |   149 [32m+[m
+ .../merged.dir/values-ne/values-ne.xml             |   149 [32m+[m
+ .../merged.dir/values-night-v8/values-night-v8.xml |    53 [32m+[m
+ .../merged.dir/values-nl/values-nl.xml             |   149 [32m+[m
+ .../merged.dir/values-or/values-or.xml             |   149 [32m+[m
+ .../merged.dir/values-pa/values-pa.xml             |   149 [32m+[m
+ .../merged.dir/values-pl/values-pl.xml             |   151 [32m+[m
+ .../merged.dir/values-port/values-port.xml         |     4 [32m+[m
+ .../merged.dir/values-pt-rBR/values-pt-rBR.xml     |   149 [32m+[m
+ .../merged.dir/values-pt-rPT/values-pt-rPT.xml     |   149 [32m+[m
+ .../merged.dir/values-pt/values-pt.xml             |    47 [32m+[m
+ .../merged.dir/values-ro/values-ro.xml             |   150 [32m+[m
+ .../merged.dir/values-ru/values-ru.xml             |   151 [32m+[m
+ .../merged.dir/values-si/values-si.xml             |   149 [32m+[m
+ .../merged.dir/values-sk/values-sk.xml             |   151 [32m+[m
+ .../merged.dir/values-sl/values-sl.xml             |   151 [32m+[m
+ .../merged.dir/values-sq/values-sq.xml             |   149 [32m+[m
+ .../merged.dir/values-sr/values-sr.xml             |   150 [32m+[m
+ .../merged.dir/values-sv/values-sv.xml             |   149 [32m+[m
+ .../merged.dir/values-sw/values-sw.xml             |   149 [32m+[m
+ .../values-sw600dp-v13/values-sw600dp-v13.xml      |    27 [32m+[m
+ .../merged.dir/values-ta/values-ta.xml             |   149 [32m+[m
+ .../merged.dir/values-te/values-te.xml             |   149 [32m+[m
+ .../merged.dir/values-th/values-th.xml             |   149 [32m+[m
+ .../merged.dir/values-tl/values-tl.xml             |   149 [32m+[m
+ .../merged.dir/values-tr/values-tr.xml             |   149 [32m+[m
+ .../merged.dir/values-uk/values-uk.xml             |   151 [32m+[m
+ .../merged.dir/values-ur/values-ur.xml             |   149 [32m+[m
+ .../merged.dir/values-uz/values-uz.xml             |   149 [32m+[m
+ .../merged.dir/values-v16/values-v16.xml           |     7 [32m+[m
+ .../merged.dir/values-v17/values-v17.xml           |    62 [32m+[m
+ .../merged.dir/values-v18/values-v18.xml           |     4 [32m+[m
+ .../merged.dir/values-v21/values-v21.xml           |   273 [32m+[m
+ .../merged.dir/values-v22/values-v22.xml           |    15 [32m+[m
+ .../merged.dir/values-v23/values-v23.xml           |    88 [32m+[m
+ .../merged.dir/values-v24/values-v24.xml           |    21 [32m+[m
+ .../merged.dir/values-v25/values-v25.xml           |     9 [32m+[m
+ .../merged.dir/values-v26/values-v26.xml           |    18 [32m+[m
+ .../merged.dir/values-v28/values-v28.xml           |    29 [32m+[m
+ .../merged.dir/values-v31/values-v31.xml           |   475 [32m+[m
+ .../merged.dir/values-v34/values-v34.xml           |    91 [32m+[m
+ .../merged.dir/values-v35/values-v35.xml           |     7 [32m+[m
+ .../merged.dir/values-vi/values-vi.xml             |   149 [32m+[m
+ .../values-w320dp-land-v13.xml                     |     5 [32m+[m
+ .../values-w360dp-port-v13.xml                     |    11 [32m+[m
+ .../values-w400dp-port-v13.xml                     |    11 [32m+[m
+ .../values-w600dp-land-v13.xml                     |     4 [32m+[m
+ .../values-watch-v20/values-watch-v20.xml          |    20 [32m+[m
+ .../values-watch-v21/values-watch-v21.xml          |    15 [32m+[m
+ .../values-xlarge-v4/values-xlarge-v4.xml          |     9 [32m+[m
+ .../merged.dir/values-zh-rCN/values-zh-rCN.xml     |   149 [32m+[m
+ .../merged.dir/values-zh-rHK/values-zh-rHK.xml     |   149 [32m+[m
+ .../merged.dir/values-zh-rTW/values-zh-rTW.xml     |   149 [32m+[m
+ .../merged.dir/values-zu/values-zu.xml             |   149 [32m+[m
+ .../merged.dir/values/values.xml                   | 15962 [32m+++++++++++++++++++[m
+ .../debug/mergeDebugResources/merger.xml           |    24 [32m+[m[31m-[m
+ .../stripped.dir/layout/activity_login.xml         |   114 [32m+[m
+ .../stripped.dir/layout/activity_main.xml          |    26 [32m+[m
+ .../stripped.dir/layout/activity_onboarding.xml    |    22 [32m+[m
+ .../stripped.dir/layout/activity_register.xml      |   117 [32m+[m
+ .../stripped.dir/layout/activity_splash.xml        |    24 [32m+[m
+ .../stripped.dir/layout/activity_video_lesson.xml  |     8 [32m+[m[31m-[m
+ .../stripped.dir/layout/fragment_chat.xml          |    59 [32m+[m
+ .../stripped.dir/layout/fragment_grammar.xml       |    13 [32m+[m
+ .../layout/fragment_grammar_detail.xml             |   102 [32m+[m
+ .../stripped.dir/layout/fragment_home.xml          |   107 [32m+[m
+ .../stripped.dir/layout/fragment_lessons.xml       |    24 [32m+[m
+ .../stripped.dir/layout/fragment_profile.xml       |   102 [32m+[m
+ .../stripped.dir/layout/fragment_ranking.xml       |    24 [32m+[m
+ .../stripped.dir/layout/fragment_video.xml         |    13 [32m+[m
+ .../stripped.dir/layout/fragment_vocabulary.xml    |    13 [32m+[m
+ .../layout/fragment_vocabulary_detail.xml          |    33 [32m+[m
+ .../stripped.dir/layout/item_grammar.xml           |    34 [32m+[m
+ .../stripped.dir/layout/item_message_bot.xml       |    18 [32m+[m
+ .../stripped.dir/layout/item_message_user.xml      |    18 [32m+[m
+ .../stripped.dir/layout/item_ranking.xml           |    45 [32m+[m
+ .../stripped.dir/layout/item_video_lesson.xml      |    34 [32m+[m
+ .../stripped.dir/layout/item_vocabulary.xml        |    34 [32m+[m
+ .../stripped.dir/layout/item_word_card.xml         |    43 [32m+[m
+ .../stripped.dir/layout/onboarding_page_level.xml  |    75 [32m+[m
+ .../layout/onboarding_page_nickname.xml            |    60 [32m+[m
+ .../stripped.dir/layout/onboarding_page_reason.xml |    75 [32m+[m
+ .../stripped.dir/layout/onboarding_page_time.xml   |    75 [32m+[m
+ .../compile-file-map.properties                    |     8 [32m+[m[31m-[m
+ .../debug/packageDebugResources/merger.xml         |     2 [32m+[m[31m-[m
+ .../stripped.dir/layout/activity_video_lesson.xml  |    72 [31m-[m
+ .../stripped.dir/layout/fragment_chat.xml          |    59 [32m+[m
+ .../stripped.dir/layout/item_message_bot.xml       |    18 [32m+[m
+ .../stripped.dir/layout/item_message_user.xml      |    18 [32m+[m
+ .../packageDebug/tmp/debug/dex-renamer-state.txt   |     2 [32m+[m[31m-[m
+ .../tmp/debug/zip-cache/androidResources           |     2 [32m+[m[31m-[m
+ .../tmp/debug/zip-cache/javaResources0             |     2 [32m+[m[31m-[m
+ .../com/example/sealspeak/BuildConfig.class        |   Bin [31m768[m -> [32m861[m bytes
+ .../databinding/FragmentChatBinding.class          |   Bin [31m0[m -> [32m3443[m bytes
+ .../databinding/ItemMessageBotBinding.class        |   Bin [31m0[m -> [32m2891[m bytes
+ .../databinding/ItemMessageUserBinding.class       |   Bin [31m0[m -> [32m2898[m bytes
+ .../linked-resources-binary-format-debug.ap_       |   Bin [31m1948737[m -> [32m1922113[m bytes
+ .../debug/parseDebugLocalResources/R-def.txt       |    11 [32m+[m
+ .../manifest-merger-blame-debug-report.txt         |   641 [32m+[m[31m-[m
+ .../debug/mergeDebugJavaResource/base.jar          |   Bin [31m88568[m -> [32m130429[m bytes
+ .../processDebugMainManifest/AndroidManifest.xml   |     5 [32m+[m[31m-[m
+ .../debug/processDebugManifest/AndroidManifest.xml |     5 [32m+[m[31m-[m
+ .../drawable_bg_message_bot.xml.flat               |   Bin [31m0[m -> [32m612[m bytes
+ .../drawable_bg_message_user.xml.flat              |   Bin [31m0[m -> [32m616[m bytes
+ .../mergeDebugResources/drawable_ic_chat.xml.flat  |   Bin [31m0[m -> [32m708[m bytes
+ .../layout_activity_video_lesson.xml.flat          |   Bin [31m4388[m -> [32m4380[m bytes
+ .../layout_fragment_chat.xml.flat                  |   Bin [31m0[m -> [32m3652[m bytes
+ .../layout_item_message_bot.xml.flat               |   Bin [31m0[m -> [32m1164[m bytes
+ .../layout_item_message_user.xml.flat              |   Bin [31m0[m -> [32m1168[m bytes
+ .../menu_bottom_nav_menu.xml.flat                  |   Bin [31m1272[m -> [32m1532[m bytes
+ .../mergeDebugResources/values_values.arsc.flat    |   Bin [31m1049044[m -> [32m1048020[m bytes
+ .../out/multi-v2/mergeDebugResources.json          |   284 [32m+[m[31m-[m
+ .../mergeDebugResources/out/multi-v2/values.json   |   284 [32m+[m[31m-[m
+ .../mergeDebugResources/out/single/layout.json     |   108 [32m+[m[31m-[m
+ .../out/single/mergeDebugResources.json            |   212 [32m+[m[31m-[m
+ .../AndroidManifest.xml                            |     5 [32m+[m[31m-[m
+ .../drawable/bg_message_bot.xml                    |     9 [32m+[m
+ .../drawable/bg_message_user.xml                   |     9 [32m+[m
+ .../packageDebugResources/drawable/ic_chat.xml     |     3 [32m+[m
+ .../layout/activity_video_lesson.xml               |     8 [32m+[m[31m-[m
+ .../packageDebugResources/layout/fragment_chat.xml |    59 [32m+[m
+ .../layout/item_message_bot.xml                    |    18 [32m+[m
+ .../layout/item_message_user.xml                   |    18 [32m+[m
+ .../packageDebugResources/menu/bottom_nav_menu.xml |     4 [32m+[m
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_0.jar |   Bin [31m30517[m -> [32m0[m bytes
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_1.jar |   Bin [31m31655[m -> [32m0[m bytes
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_2.jar |   Bin [31m54551[m -> [32m0[m bytes
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_3.jar |   Bin [31m74147[m -> [32m0[m bytes
+ ...0cd451171a01acc1c90ce09d377e4a4241b4f801e_0.jar |   Bin [31m0[m -> [32m30586[m bytes
+ ...0cd451171a01acc1c90ce09d377e4a4241b4f801e_1.jar |   Bin [31m0[m -> [32m31636[m bytes
+ ...0cd451171a01acc1c90ce09d377e4a4241b4f801e_2.jar |   Bin [31m0[m -> [32m47817[m bytes
+ ...0cd451171a01acc1c90ce09d377e4a4241b4f801e_3.jar |   Bin [31m0[m -> [32m74163[m bytes
+ .../out/com/example/sealspeak/BuildConfig.dex      |   Bin [31m1144[m -> [32m1236[m bytes
+ .../example/sealspeak/ChatAdapter$ViewHolder.dex   |   Bin [31m0[m -> [32m2088[m bytes
+ .../out/com/example/sealspeak/ChatAdapter.dex      |   Bin [31m0[m -> [32m3460[m bytes
+ .../ChatFragment$sendMessage$2$responseText$1.dex  |   Bin [31m0[m -> [32m2820[m bytes
+ .../sealspeak/ChatFragment$sendMessage$2.dex       |   Bin [31m0[m -> [32m4980[m bytes
+ .../out/com/example/sealspeak/ChatFragment.dex     |   Bin [31m0[m -> [32m12856[m bytes
+ .../out/com/example/sealspeak/ChatMessage.dex      |   Bin [31m0[m -> [32m2696[m bytes
+ .../VideoLessonActivity$loadLesson$1$1.dex         |   Bin [31m2612[m -> [32m0[m bytes
+ .../VideoLessonActivity$setupPlayer$1.dex          |   Bin [31m0[m -> [32m2200[m bytes
+ .../com/example/sealspeak/VideoLessonActivity.dex  |   Bin [31m9308[m -> [32m11176[m bytes
+ .../sealspeak/databinding/FragmentChatBinding.dex  |   Bin [31m0[m -> [32m2804[m bytes
+ .../databinding/ItemMessageBotBinding.dex          |   Bin [31m0[m -> [32m2524[m bytes
+ .../databinding/ItemMessageUserBinding.dex         |   Bin [31m0[m -> [32m2528[m bytes
+ .../debug/processDebugResources/R.txt              |  7533 [32m+++++[m[31m----[m
+ .../debug/processDebugResources/stableIds.txt      |  9109 [32m++++++[m[31m-----[m
+ .../debug/generateDebugRFile/package-aware-r.txt   |    11 [32m+[m
+ .../caches-jvm/inputs/source-to-output.tab         |   Bin [31m4096[m -> [32m4096[m bytes
+ .../inputs/source-to-output.tab.keystream          |   Bin [31m4096[m -> [32m4096[m bytes
+ .../inputs/source-to-output.tab.keystream.len      |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/inputs/source-to-output.tab.len     |   Bin [31m8[m -> [32m8[m bytes
+ .../inputs/source-to-output.tab.values.at          |   Bin [31m16319[m -> [32m26162[m bytes
+ .../caches-jvm/inputs/source-to-output.tab_i       |   Bin [31m32768[m -> [32m32768[m bytes
+ .../caches-jvm/jvm/kotlin/class-attributes.tab     |   Bin [31m4096[m -> [32m4096[m bytes
+ .../jvm/kotlin/class-attributes.tab.keystream      |   Bin [31m4096[m -> [32m4096[m bytes
+ .../jvm/kotlin/class-attributes.tab.keystream.len  |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/class-attributes.tab.len |   Bin [31m8[m -> [32m8[m bytes
+ .../jvm/kotlin/class-attributes.tab.values.at      |   Bin [31m175[m -> [32m223[m bytes
+ .../caches-jvm/jvm/kotlin/class-attributes.tab_i   |   Bin [31m32768[m -> [32m32768[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab         |   Bin [31m4096[m -> [32m4096[m bytes
+ .../kotlin/class-fq-name-to-source.tab.keystream   |   Bin [31m4096[m -> [32m4096[m bytes
+ .../class-fq-name-to-source.tab.keystream.len      |   Bin [31m8[m -> [32m8[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab.len     |   Bin [31m8[m -> [32m8[m bytes
+ .../kotlin/class-fq-name-to-source.tab.values.at   |   Bin [31m5315[m -> [32m7277[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab_i       |   Bin [31m32768[m -> [32m32768[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab         |   Bin [31m4096[m -> [32m4096[m bytes
+ .../kotlin/internal-name-to-source.tab.keystream   |   Bin [31m4096[m -> [32m4096[m bytes
+ .../internal-name-to-source.tab.keystream.len      |   Bin [31m8[m -> [32m8[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab.len     |   Bin [31m8[m -> [32m8[m bytes
+ .../kotlin/internal-name-to-source.tab.values.at   |   Bin [31m5705[m -> [32m9389[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab_i       |   Bin [31m32768[m -> [32m32768[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/proto.tab      |   Bin [31m4096[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.keystream      |   Bin [31m4096[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.keystream.len  |   Bin [31m8[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/proto.tab.len  |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.values         |   Bin [31m0[m -> [32m20931[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.values.at      |   Bin [31m22836[m -> [32m32467[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.values.s       |     1 [32m+[m
+ .../cacheable/caches-jvm/jvm/kotlin/proto.tab_i    |   Bin [31m32768[m -> [32m32768[m bytes
+ .../caches-jvm/jvm/kotlin/source-to-classes.tab    |   Bin [31m4096[m -> [32m4096[m bytes
+ .../jvm/kotlin/source-to-classes.tab.keystream     |   Bin [31m4096[m -> [32m4096[m bytes
+ .../jvm/kotlin/source-to-classes.tab.keystream.len |   Bin [31m8[m -> [32m8[m bytes
+ .../jvm/kotlin/source-to-classes.tab.len           |   Bin [31m8[m -> [32m8[m bytes
+ .../jvm/kotlin/source-to-classes.tab.values.at     |   Bin [31m5136[m -> [32m8497[m bytes
+ .../caches-jvm/jvm/kotlin/source-to-classes.tab_i  |   Bin [31m32768[m -> [32m32768[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/subtypes.tab   |   Bin [31m4096[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/subtypes.tab.values.at   |   Bin [31m1447[m -> [32m2070[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/supertypes.tab |   Bin [31m4096[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab.keystream |   Bin [31m4096[m -> [32m4096[m bytes
+ .../jvm/kotlin/supertypes.tab.keystream.len        |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab.len       |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab.values.at |   Bin [31m1482[m -> [32m2098[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab_i         |   Bin [31m32768[m -> [32m32768[m bytes
+ .../cacheable/caches-jvm/lookups/counters.tab      |     2 [32m+[m[31m-[m
+ .../cacheable/caches-jvm/lookups/file-to-id.tab    |   Bin [31m4096[m -> [32m4096[m bytes
+ .../caches-jvm/lookups/file-to-id.tab.keystream    |   Bin [31m4096[m -> [32m4096[m bytes
+ .../lookups/file-to-id.tab.keystream.len           |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/lookups/file-to-id.tab.len          |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/lookups/file-to-id.tab.values.at    |   Bin [31m241[m -> [32m331[m bytes
+ .../cacheable/caches-jvm/lookups/file-to-id.tab_i  |   Bin [31m32768[m -> [32m32768[m bytes
+ .../cacheable/caches-jvm/lookups/id-to-file.tab    |   Bin [31m4096[m -> [32m4096[m bytes
+ .../caches-jvm/lookups/id-to-file.tab.keystream    |   Bin [31m4096[m -> [32m4096[m bytes
+ .../lookups/id-to-file.tab.keystream.len           |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/lookups/id-to-file.tab.len          |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/lookups/id-to-file.tab.values.at    |   Bin [31m2037[m -> [32m2961[m bytes
+ .../cacheable/caches-jvm/lookups/id-to-file.tab_i  |   Bin [31m32768[m -> [32m32768[m bytes
+ .../cacheable/caches-jvm/lookups/lookups.tab       |   Bin [31m16384[m -> [32m16384[m bytes
+ .../caches-jvm/lookups/lookups.tab.keystream       |   Bin [31m102400[m -> [32m102400[m bytes
+ .../caches-jvm/lookups/lookups.tab.keystream.len   |   Bin [31m8[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/lookups/lookups.tab.len   |   Bin [31m8[m -> [32m8[m bytes
+ .../caches-jvm/lookups/lookups.tab.values          |   Bin [31m0[m -> [32m72183[m bytes
+ .../caches-jvm/lookups/lookups.tab.values.at       |   Bin [31m18504[m -> [32m32122[m bytes
+ .../caches-jvm/lookups/lookups.tab.values.s        |     1 [32m+[m
+ .../cacheable/caches-jvm/lookups/lookups.tab_i     |   Bin [31m32768[m -> [32m32768[m bytes
+ .../compileDebugKotlin/cacheable/last-build.bin    |   Bin [31m18[m -> [32m18[m bytes
+ .../shrunk-classpath-snapshot.bin                  |   Bin [31m67598[m -> [32m79603[m bytes
+ .../outputs/logs/manifest-merger-debug-report.txt  |   132 [32m+[m[31m-[m
+ .../ActivityLoginBinding.class.uniqueId18          |   Bin [31m0[m -> [32m3885[m bytes
+ .../stash-dir/ActivityMainBinding.class.uniqueId10 |   Bin [31m0[m -> [32m3280[m bytes
+ .../ActivityOnboardingBinding.class.uniqueId1      |   Bin [31m0[m -> [32m3164[m bytes
+ .../ActivityRegisterBinding.class.uniqueId20       |   Bin [31m0[m -> [32m3811[m bytes
+ .../ActivitySplashBinding.class.uniqueId14         |   Bin [31m0[m -> [32m2890[m bytes
+ .../ActivityVideoLessonBinding.class.uniqueId7     |   Bin [31m0[m -> [32m4251[m bytes
+ .../stash-dir/BuildConfig.class.uniqueId17         |   Bin [31m0[m -> [32m768[m bytes
+ .../FragmentGrammarBinding.class.uniqueId13        |   Bin [31m0[m -> [32m2951[m bytes
+ .../FragmentGrammarDetailBinding.class.uniqueId9   |   Bin [31m0[m -> [32m3798[m bytes
+ .../stash-dir/FragmentHomeBinding.class.uniqueId21 |   Bin [31m0[m -> [32m2869[m bytes
+ .../FragmentLessonsBinding.class.uniqueId19        |   Bin [31m0[m -> [32m3208[m bytes
+ .../FragmentProfileBinding.class.uniqueId22        |   Bin [31m0[m -> [32m3956[m bytes
+ .../FragmentRankingBinding.class.uniqueId23        |   Bin [31m0[m -> [32m2951[m bytes
+ .../stash-dir/FragmentVideoBinding.class.uniqueId2 |   Bin [31m0[m -> [32m2936[m bytes
+ .../FragmentVocabularyBinding.class.uniqueId3      |   Bin [31m0[m -> [32m2975[m bytes
+ ...ragmentVocabularyDetailBinding.class.uniqueId11 |   Bin [31m0[m -> [32m3449[m bytes
+ .../stash-dir/ItemGrammarBinding.class.uniqueId12  |   Bin [31m0[m -> [32m3168[m bytes
+ .../stash-dir/ItemRankingBinding.class.uniqueId24  |   Bin [31m0[m -> [32m3340[m bytes
+ .../ItemVideoLessonBinding.class.uniqueId0         |   Bin [31m0[m -> [32m3197[m bytes
+ .../ItemVocabularyBinding.class.uniqueId15         |   Bin [31m0[m -> [32m3192[m bytes
+ .../stash-dir/ItemWordCardBinding.class.uniqueId16 |   Bin [31m0[m -> [32m3046[m bytes
+ .../OnboardingPageLevelBinding.class.uniqueId8     |   Bin [31m0[m -> [32m3633[m bytes
+ .../OnboardingPageNicknameBinding.class.uniqueId6  |   Bin [31m0[m -> [32m3036[m bytes
+ .../OnboardingPageReasonBinding.class.uniqueId4    |   Bin [31m0[m -> [32m3645[m bytes
+ .../OnboardingPageTimeBinding.class.uniqueId5      |   Bin [31m0[m -> [32m3621[m bytes
+ .../previous-compilation-data.bin                  |   Bin [31m81297[m -> [32m81736[m bytes
+ app/src/main/AndroidManifest.xml                   |     9 [32m+[m[31m-[m
+ .../main/java/com/example/sealspeak/ChatAdapter.kt |    32 [32m+[m
+ .../java/com/example/sealspeak/ChatFragment.kt     |   193 [32m+[m
+ .../main/java/com/example/sealspeak/ChatMessage.kt |     6 [32m+[m
+ .../com/example/sealspeak/VideoLessonActivity.kt   |   107 [32m+[m[31m-[m
+ app/src/main/res/drawable/bg_message_bot.xml       |     9 [32m+[m
+ app/src/main/res/drawable/bg_message_user.xml      |     9 [32m+[m
+ app/src/main/res/drawable/ic_chat.xml              |     3 [32m+[m
+ app/src/main/res/layout/activity_video_lesson.xml  |     8 [32m+[m[31m-[m
+ app/src/main/res/layout/fragment_chat.xml          |    59 [32m+[m
+ app/src/main/res/layout/item_message_bot.xml       |    18 [32m+[m
+ app/src/main/res/layout/item_message_user.xml      |    18 [32m+[m
+ app/src/main/res/menu/bottom_nav_menu.xml          |     4 [32m+[m
+ app/src/main/res/navigation/nav_graph.xml          |     4 [32m+[m
+ 394 files changed, 41056 insertions(+), 9320 deletions(-)
+
+[33mcommit cb27a3d44fd2b473c5852a8f2a8449fa5caba03e[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Tue May 5 07:20:24 2026 -0500
+
+    Barra de navegacion y funciones
+
+ .../databinding/ActivityLoginBinding.java          |   114 [32m+[m
+ .../sealspeak/databinding/ActivityMainBinding.java |    80 [32m+[m
+ .../databinding/ActivityOnboardingBinding.java     |    80 [32m+[m
+ .../databinding/ActivityRegisterBinding.java       |   113 [32m+[m
+ .../databinding/ActivitySplashBinding.java         |    68 [32m+[m
+ .../databinding/ActivityVideoLessonBinding.java    |   135 [32m+[m
+ .../databinding/FragmentGrammarBinding.java        |    68 [32m+[m
+ .../databinding/FragmentGrammarDetailBinding.java  |   122 [32m+[m
+ .../sealspeak/databinding/FragmentHomeBinding.java |    68 [32m+[m
+ .../databinding/FragmentLessonsBinding.java        |    80 [32m+[m
+ .../databinding/FragmentProfileBinding.java        |   133 [32m+[m
+ .../databinding/FragmentRankingBinding.java        |    68 [32m+[m
+ .../databinding/FragmentVideoBinding.java          |    68 [32m+[m
+ .../databinding/FragmentVocabularyBinding.java     |    69 [32m+[m
+ .../FragmentVocabularyDetailBinding.java           |    92 [32m+[m
+ .../sealspeak/databinding/ItemGrammarBinding.java  |    85 [32m+[m
+ .../sealspeak/databinding/ItemRankingBinding.java  |    95 [32m+[m
+ .../databinding/ItemVideoLessonBinding.java        |    85 [32m+[m
+ .../databinding/ItemVocabularyBinding.java         |    85 [32m+[m
+ .../sealspeak/databinding/ItemWordCardBinding.java |    79 [32m+[m
+ .../databinding/OnboardingPageLevelBinding.java    |   112 [32m+[m
+ .../databinding/OnboardingPageNicknameBinding.java |    69 [32m+[m
+ .../databinding/OnboardingPageReasonBinding.java   |   112 [32m+[m
+ .../databinding/OnboardingPageTimeBinding.java     |   112 [32m+[m
+ .../processDebugGoogleServices/values/values.xml   |    10 [32m+[m
+ .../debug/com/example/sealspeak/BuildConfig.java   |    14 [32m+[m
+ .../debug/navigation/nav_graph.xml                 |    22 [32m+[m
+ app/build/gmpAppId.txt                             |     1 [32m+[m
+ .../debug/mapDebugSourceSetPaths/file-map.txt      |     8 [32m+[m
+ .../javaPreCompileDebug/annotationProcessors.json  |     1 [32m+[m
+ app/build/intermediates/apk/debug/app-debug.apk    |   Bin [31m0[m -> [32m11891589[m bytes
+ .../intermediates/apk/debug/output-metadata.json   |    21 [32m+[m
+ .../createDebugApkListingFileRedirect/redirect.txt |     2 [32m+[m
+ .../writeDebugAppMetadata/app-metadata.properties  |     2 [32m+[m
+ .../classes/META-INF/app.kotlin_module             |   Bin [31m0[m -> [32m24[m bytes
+ .../sealspeak/GrammarAdapter$ViewHolder.class      |   Bin [31m0[m -> [32m2262[m bytes
+ .../com/example/sealspeak/GrammarAdapter.class     |   Bin [31m0[m -> [32m5186[m bytes
+ .../GrammarDetailFragment$Companion.class          |   Bin [31m0[m -> [32m2157[m bytes
+ .../example/sealspeak/GrammarDetailFragment.class  |   Bin [31m0[m -> [32m6082[m bytes
+ .../com/example/sealspeak/GrammarFragment.class    |   Bin [31m0[m -> [32m8298[m bytes
+ .../com/example/sealspeak/GrammarLesson.class      |   Bin [31m0[m -> [32m5686[m bytes
+ .../com/example/sealspeak/HomeFragment.class       |   Bin [31m0[m -> [32m5059[m bytes
+ .../com/example/sealspeak/LessonsFragment.class    |   Bin [31m0[m -> [32m4637[m bytes
+ .../example/sealspeak/LessonsPagerAdapter.class    |   Bin [31m0[m -> [32m1561[m bytes
+ .../com/example/sealspeak/LoginActivity.class      |   Bin [31m0[m -> [32m12477[m bytes
+ .../com/example/sealspeak/MainActivity.class       |   Bin [31m0[m -> [32m2846[m bytes
+ .../com/example/sealspeak/OnboardingActivity.class |   Bin [31m0[m -> [32m9319[m bytes
+ .../OnboardingAdapter$PageViewHolder.class         |   Bin [31m0[m -> [32m1270[m bytes
+ .../com/example/sealspeak/OnboardingAdapter.class  |   Bin [31m0[m -> [32m6570[m bytes
+ .../com/example/sealspeak/PointsManager.class      |   Bin [31m0[m -> [32m2309[m bytes
+ .../com/example/sealspeak/ProfileFragment.class    |   Bin [31m0[m -> [32m8141[m bytes
+ .../sealspeak/RankingAdapter$ViewHolder.class      |   Bin [31m0[m -> [32m2463[m bytes
+ .../com/example/sealspeak/RankingAdapter.class     |   Bin [31m0[m -> [32m4481[m bytes
+ .../com/example/sealspeak/RankingFragment.class    |   Bin [31m0[m -> [32m6713[m bytes
+ .../com/example/sealspeak/RankingUser.class        |   Bin [31m0[m -> [32m3364[m bytes
+ .../com/example/sealspeak/RegisterActivity.class   |   Bin [31m0[m -> [32m6021[m bytes
+ .../com/example/sealspeak/SplashActivity.class     |   Bin [31m0[m -> [32m5570[m bytes
+ .../com/example/sealspeak/VideoFragment.class      |   Bin [31m0[m -> [32m7502[m bytes
+ .../com/example/sealspeak/VideoLesson.class        |   Bin [31m0[m -> [32m3588[m bytes
+ .../VideoLessonActivity$loadLesson$1$1.class       |   Bin [31m0[m -> [32m2963[m bytes
+ .../example/sealspeak/VideoLessonActivity.class    |   Bin [31m0[m -> [32m9342[m bytes
+ .../sealspeak/VideoLessonAdapter$ViewHolder.class  |   Bin [31m0[m -> [32m2286[m bytes
+ .../com/example/sealspeak/VideoLessonAdapter.class |   Bin [31m0[m -> [32m5532[m bytes
+ .../sealspeak/VocabularyAdapter$ViewHolder.class   |   Bin [31m0[m -> [32m2286[m bytes
+ .../com/example/sealspeak/VocabularyAdapter.class  |   Bin [31m0[m -> [32m5599[m bytes
+ .../com/example/sealspeak/VocabularyCategory.class |   Bin [31m0[m -> [32m4306[m bytes
+ .../VocabularyDetailFragment$Companion.class       |   Bin [31m0[m -> [32m4681[m bytes
+ .../sealspeak/VocabularyDetailFragment.class       |   Bin [31m0[m -> [32m7799[m bytes
+ .../com/example/sealspeak/VocabularyFragment.class |   Bin [31m0[m -> [32m8036[m bytes
+ .../sealspeak/WordCardAdapter$ViewHolder.class     |   Bin [31m0[m -> [32m1944[m bytes
+ .../com/example/sealspeak/WordCardAdapter.class    |   Bin [31m0[m -> [32m3693[m bytes
+ .../output-metadata.json                           |    10 [32m+[m
+ .../debug/processDebugResources/R.jar              |   Bin [31m0[m -> [32m996634[m bytes
+ .../debug/generateDebugRFile/R.jar                 |   Bin [31m0[m -> [32m8309[m bytes
+ .../debug/generateDebugRFile/R.txt                 |   117 [32m+[m
+ .../navigation_nav_graph.xml.flat                  |   Bin [31m0[m -> [32m1612[m bytes
+ .../out/com.example.sealspeak-binding_classes.json |   Bin [31m0[m -> [32m11144[m bytes
+ .../out/activity_login-layout.xml                  |     1 [32m+[m
+ .../out/activity_main-layout.xml                   |     1 [32m+[m
+ .../out/activity_onboarding-layout.xml             |     1 [32m+[m
+ .../out/activity_register-layout.xml               |     1 [32m+[m
+ .../out/activity_splash-layout.xml                 |     1 [32m+[m
+ .../out/activity_video_lesson-layout.xml           |     1 [32m+[m
+ .../out/fragment_grammar-layout.xml                |     1 [32m+[m
+ .../out/fragment_grammar_detail-layout.xml         |     1 [32m+[m
+ .../out/fragment_home-layout.xml                   |     1 [32m+[m
+ .../out/fragment_lessons-layout.xml                |     1 [32m+[m
+ .../out/fragment_profile-layout.xml                |     1 [32m+[m
+ .../out/fragment_ranking-layout.xml                |     1 [32m+[m
+ .../out/fragment_video-layout.xml                  |     1 [32m+[m
+ .../out/fragment_vocabulary-layout.xml             |     1 [32m+[m
+ .../out/fragment_vocabulary_detail-layout.xml      |     1 [32m+[m
+ .../out/item_grammar-layout.xml                    |     1 [32m+[m
+ .../out/item_ranking-layout.xml                    |     1 [32m+[m
+ .../out/item_video_lesson-layout.xml               |     1 [32m+[m
+ .../out/item_vocabulary-layout.xml                 |     1 [32m+[m
+ .../out/item_word_card-layout.xml                  |     1 [32m+[m
+ .../out/onboarding_page_level-layout.xml           |     1 [32m+[m
+ .../out/onboarding_page_nickname-layout.xml        |     1 [32m+[m
+ .../out/onboarding_page_reason-layout.xml          |     1 [32m+[m
+ .../out/onboarding_page_time-layout.xml            |     1 [32m+[m
+ .../out/activity_login-layout.xml                  |     1 [32m+[m
+ .../out/activity_main-layout.xml                   |     1 [32m+[m
+ .../out/activity_onboarding-layout.xml             |     1 [32m+[m
+ .../out/activity_register-layout.xml               |     1 [32m+[m
+ .../out/activity_splash-layout.xml                 |     1 [32m+[m
+ .../out/activity_video_lesson-layout.xml           |     1 [32m+[m
+ .../out/fragment_grammar-layout.xml                |     1 [32m+[m
+ .../out/fragment_grammar_detail-layout.xml         |     1 [32m+[m
+ .../out/fragment_home-layout.xml                   |     1 [32m+[m
+ .../out/fragment_lessons-layout.xml                |     1 [32m+[m
+ .../out/fragment_profile-layout.xml                |     1 [32m+[m
+ .../out/fragment_ranking-layout.xml                |     1 [32m+[m
+ .../out/fragment_video-layout.xml                  |     1 [32m+[m
+ .../out/fragment_vocabulary-layout.xml             |     1 [32m+[m
+ .../out/fragment_vocabulary_detail-layout.xml      |     1 [32m+[m
+ .../out/item_grammar-layout.xml                    |     1 [32m+[m
+ .../out/item_ranking-layout.xml                    |     1 [32m+[m
+ .../out/item_video_lesson-layout.xml               |     1 [32m+[m
+ .../out/item_vocabulary-layout.xml                 |     1 [32m+[m
+ .../out/item_word_card-layout.xml                  |     1 [32m+[m
+ .../out/onboarding_page_level-layout.xml           |     1 [32m+[m
+ .../out/onboarding_page_nickname-layout.xml        |     1 [32m+[m
+ .../out/onboarding_page_reason-layout.xml          |     1 [32m+[m
+ .../out/onboarding_page_time-layout.xml            |     1 [32m+[m
+ .../out/currentProject/dirs_bucket_0/graph.bin     |   Bin [31m0[m -> [32m235[m bytes
+ .../out/currentProject/dirs_bucket_1/graph.bin     |   Bin [31m0[m -> [32m235[m bytes
+ .../out/currentProject/dirs_bucket_2/graph.bin     |   Bin [31m0[m -> [32m235[m bytes
+ .../out/currentProject/dirs_bucket_3/graph.bin     |   Bin [31m0[m -> [32m235[m bytes
+ .../graph.bin                                      |   Bin [31m0[m -> [32m235[m bytes
+ .../graph.bin                                      |   Bin [31m0[m -> [32m235[m bytes
+ .../graph.bin                                      |   Bin [31m0[m -> [32m235[m bytes
+ .../graph.bin                                      |   Bin [31m0[m -> [32m235[m bytes
+ .../out/externalLibs/dirs_bucket_0/graph.bin       |   Bin [31m0[m -> [32m235[m bytes
+ .../out/externalLibs/dirs_bucket_1/graph.bin       |   Bin [31m0[m -> [32m235[m bytes
+ .../out/externalLibs/dirs_bucket_2/graph.bin       |   Bin [31m0[m -> [32m235[m bytes
+ .../out/externalLibs/dirs_bucket_3/graph.bin       |   Bin [31m0[m -> [32m235[m bytes
+ .../out/mixedScopes/dirs_bucket_0/graph.bin        |   Bin [31m0[m -> [32m235[m bytes
+ .../out/mixedScopes/dirs_bucket_1/graph.bin        |   Bin [31m0[m -> [32m235[m bytes
+ .../out/mixedScopes/dirs_bucket_2/graph.bin        |   Bin [31m0[m -> [32m235[m bytes
+ .../out/mixedScopes/dirs_bucket_3/graph.bin        |   Bin [31m0[m -> [32m235[m bytes
+ .../out/otherProjects/dirs_bucket_0/graph.bin      |   Bin [31m0[m -> [32m235[m bytes
+ .../out/otherProjects/dirs_bucket_1/graph.bin      |   Bin [31m0[m -> [32m235[m bytes
+ .../out/otherProjects/dirs_bucket_2/graph.bin      |   Bin [31m0[m -> [32m235[m bytes
+ .../out/otherProjects/dirs_bucket_3/graph.bin      |   Bin [31m0[m -> [32m235[m bytes
+ .../dex/debug/mergeExtDexDebug/classes.dex         |   Bin [31m0[m -> [32m10150000[m bytes
+ .../dex/debug/mergeExtDexDebug/classes2.dex        |   Bin [31m0[m -> [32m7442344[m bytes
+ .../dex/debug/mergeExtDexDebug/classes3.dex        |   Bin [31m0[m -> [32m6421452[m bytes
+ .../dex/debug/mergeProjectDexDebug/0/classes.dex   |   Bin [31m0[m -> [32m605928[m bytes
+ .../dex/debug/mergeProjectDexDebug/13/classes.dex  |   Bin [31m0[m -> [32m23504[m bytes
+ .../dex/debug/mergeProjectDexDebug/9/classes.dex   |   Bin [31m0[m -> [32m83980[m bytes
+ .../debug/dexBuilderDebug/out                      |   Bin [31m0[m -> [32m383[m bytes
+ .../debug/dexBuilderDebug/out                      |     1 [32m+[m
+ .../base_builder_log.json                          |   Bin [31m0[m -> [32m11826[m bytes
+ .../incremental/debug-mergeJavaRes/merge-state     |   Bin [31m0[m -> [32m19189[m bytes
+ .../zip-cache/+oAYdtxBnadM+wWeLTxfkQ==             |     1 [32m+[m
+ .../zip-cache/0VyVpOPBGNmEcjKOTZrghA==             |     1 [32m+[m
+ .../zip-cache/0pliZ4lEjGv16hX8bWh9Jg==             |     1 [32m+[m
+ .../zip-cache/0tTtR_5qHYMTRB_dD2J+Dg==             |     1 [32m+[m
+ .../zip-cache/4SqRg1lTyZZGTxwqfy5BAA==             |     1 [32m+[m
+ .../zip-cache/52zma9gQGKObT4JTzK9CgQ==             |     1 [32m+[m
+ .../zip-cache/5Dl785x+waVXytO7R6T7ag==             |     1 [32m+[m
+ .../zip-cache/5MK3waFnOO1P0Bcl3M9urw==             |     1 [32m+[m
+ .../zip-cache/5XW+FN4omTsZhXzTHXsXEw==             |     1 [32m+[m
+ .../zip-cache/5okYm5lW+5TgqjLvoa3uDA==             |     1 [32m+[m
+ .../zip-cache/6QsIEy3GKqF1ZFsVfH8Dug==             |     1 [32m+[m
+ .../zip-cache/6l9AtSoK7sCuhwDUMXlixw==             |     1 [32m+[m
+ .../zip-cache/6sG9lscC4pYfIJ2FKE4G3A==             |     1 [32m+[m
+ .../zip-cache/7dDCGwd6EvMepHhb71ULQw==             |     1 [32m+[m
+ .../zip-cache/7lFb9AacQgRNn6lvFk1lBg==             |     1 [32m+[m
+ .../zip-cache/7z3QkAb1px76uVaSr4VCRg==             |     1 [32m+[m
+ .../zip-cache/8WgjIIkbi7A1HBsWjtB0IQ==             |     1 [32m+[m
+ .../zip-cache/9E4Gx7KHd_jM4iEXCYqzqg==             |     1 [32m+[m
+ .../zip-cache/9Qh971o1mp4NzRavZyXeew==             |     1 [32m+[m
+ .../zip-cache/9c3zoqVUdL5irpAO4n05ag==             |     1 [32m+[m
+ .../zip-cache/9utqr5gBh9bdd6UTDdhMiQ==             |     1 [32m+[m
+ .../zip-cache/Ac81U1mJA7fk7orWr8pXjw==             |     1 [32m+[m
+ .../zip-cache/BBr3NUSmGENakedHiU0maw==             |     1 [32m+[m
+ .../zip-cache/DO72kmH_jHWP7Ahk2wpKZw==             |     1 [32m+[m
+ .../zip-cache/EQnMqjFq2sSn3FQjmBS7oQ==             |     1 [32m+[m
+ .../zip-cache/Eg02n3Iy4Nlg5otHvSZIfg==             |     1 [32m+[m
+ .../zip-cache/EwzGpWEdGD0tmG2GqRtMnA==             |     1 [32m+[m
+ .../zip-cache/FPWYubL72W2QSTFGVHjV7w==             |     1 [32m+[m
+ .../zip-cache/GZn3cJjycuVU+BGflNtOHA==             |     1 [32m+[m
+ .../zip-cache/GzcSadPBkFqjSkRQKDuu5w==             |     1 [32m+[m
+ .../zip-cache/H6NRqXQ2WaB8rrKhHcPoIw==             |     1 [32m+[m
+ .../zip-cache/H_zYMFG2PsFBaEAXhgQ1yw==             |     1 [32m+[m
+ .../zip-cache/HxsbKbMSnGqnWtjNiNj84g==             |     1 [32m+[m
+ .../zip-cache/I2BPNnRfk8ZfsDZV8mZ4ew==             |     1 [32m+[m
+ .../zip-cache/I4SicMrzdPeTmiyPOxa0oQ==             |     1 [32m+[m
+ .../zip-cache/Jaj_9oD3y17e8kbZB5tNeg==             |     1 [32m+[m
+ .../zip-cache/KAHTfA1UAzePs5D3mYKS+g==             |     1 [32m+[m
+ .../zip-cache/KLusySqo603pLjJkuZlZrA==             |     1 [32m+[m
+ .../zip-cache/LeqtlV_a9cv3o83EdVwHPQ==             |     1 [32m+[m
+ .../zip-cache/M2AZb4OHmGhcrpMcPymshg==             |     1 [32m+[m
+ .../zip-cache/MaQEaVqY_5W7CAvzAZ_Mmw==             |     1 [32m+[m
+ .../zip-cache/MeNMoNn1cvZ1yOYD7XmIXg==             |     1 [32m+[m
+ .../zip-cache/Ml6Oq1xAO0o_ANShmuQP6g==             |     1 [32m+[m
+ .../zip-cache/MwIFmDtgcOsPDkBxztdzuA==             |     1 [32m+[m
+ .../zip-cache/MyBP6VLz6BQMyPeJVLjDJw==             |     1 [32m+[m
+ .../zip-cache/N4jytd9v+v4DtbPpkxmj_g==             |     1 [32m+[m
+ .../zip-cache/NMJAIL6kF4BQbtMaFbgEXg==             |     1 [32m+[m
+ .../zip-cache/NbyPyc94vLv_io_Xij5VdA==             |     1 [32m+[m
+ .../zip-cache/NjIuQ+Ps8jUc58OXbYcfQA==             |     1 [32m+[m
+ .../zip-cache/NqEuNJdgASACxt_dCRTd2w==             |     1 [32m+[m
+ .../zip-cache/NyhofogJsdBYRfzPvxPz_A==             |     1 [32m+[m
+ .../zip-cache/O83ip4rXAecnVz8C3uD4NQ==             |     1 [32m+[m
+ .../zip-cache/OcQs+TTlg71wk7KJs4ngBg==             |     1 [32m+[m
+ .../zip-cache/PFCKNAv4YHPUt8NX4SOf_w==             |     1 [32m+[m
+ .../zip-cache/QTnHe6ZR2U0Uhjj2MEDs5g==             |     1 [32m+[m
+ .../zip-cache/SmRAwCpWUz5Q4SL5+zrj_w==             |     1 [32m+[m
+ .../zip-cache/Sst4PrzWVazWmAMJ8_Xsig==             |     1 [32m+[m
+ .../zip-cache/T_wSsSqdggfXmjnhe4av2w==             |     1 [32m+[m
+ .../zip-cache/Tuupmd_XhOBhvYO7+LWtPQ==             |     1 [32m+[m
+ .../zip-cache/Tx2PtDYzxqRfMLjhmze3HQ==             |     1 [32m+[m
+ .../zip-cache/UpKWp6Wo2oF45S_vc_8O9g==             |     1 [32m+[m
+ .../zip-cache/VPl5hXgK0TWCy_LD2Vjw2w==             |     1 [32m+[m
+ .../zip-cache/VhXjlgCNUeLru_QJx0OFvA==             |     1 [32m+[m
+ .../zip-cache/VlXk7rrzzomzLzpbxuE1mQ==             |     1 [32m+[m
+ .../zip-cache/WDvy84W19GF0kEllqOmZSQ==             |     1 [32m+[m
+ .../zip-cache/WMC3Q_MwDNLbg2m362MLGA==             |     1 [32m+[m
+ .../zip-cache/WOuRPKabIIEx1lTt464n2w==             |     1 [32m+[m
+ .../zip-cache/XWenk0By6_ZCyx8WTgMAnw==             |     1 [32m+[m
+ .../zip-cache/Xwx8BAQ87++999bBi2iqaw==             |     1 [32m+[m
+ .../zip-cache/Yy6XbuRISoTVmO7X88IyLw==             |     1 [32m+[m
+ .../zip-cache/ZEcUDBMx3P39Zg6S1Cu_5A==             |     1 [32m+[m
+ .../zip-cache/ZMxUsdHaGDebf1+UTEN7mw==             |     1 [32m+[m
+ .../zip-cache/ZQoAhNVadkyVQ3p9aEDuMw==             |     1 [32m+[m
+ .../zip-cache/a7+PO+1V0dpVaN8fhx6bBw==             |     1 [32m+[m
+ .../zip-cache/b6CR4V3JSqgwMEsccz0pSg==             |     1 [32m+[m
+ .../zip-cache/c0bdg+OdrSFYnZOSyJF1kg==             |     1 [32m+[m
+ .../zip-cache/cDdtEiOsvhwDy1hpXroPvA==             |     1 [32m+[m
+ .../zip-cache/drW1yDr2d7Y8rllXP_PUpA==             |     1 [32m+[m
+ .../zip-cache/e4ioHnfoXh6ZVQ8kg3pCaA==             |     1 [32m+[m
+ .../zip-cache/efTRrFZItPlZn3DuStoUrA==             |     1 [32m+[m
+ .../zip-cache/fTtBEWgpnFv4meDMvF0k+A==             |     1 [32m+[m
+ .../zip-cache/gVd0w50HJfFjpcqQMvVvzQ==             |     1 [32m+[m
+ .../zip-cache/hn+hDqJrh+7zw279R9zsGw==             |     1 [32m+[m
+ .../zip-cache/hyJSNXqSGbkHys1DHYFFRw==             |     1 [32m+[m
+ .../zip-cache/iTeFjvB_UjqftbZgGGoW+w==             |     1 [32m+[m
+ .../zip-cache/jK06r7sXyyG+6MQsMA09Sw==             |     1 [32m+[m
+ .../zip-cache/ji6AkQTriXuhlS8_hCd95A==             |     1 [32m+[m
+ .../zip-cache/k3P5Mab7wQkQROKM1Q_XNA==             |     1 [32m+[m
+ .../zip-cache/kDEs0i5El0wprp16vS46gw==             |     1 [32m+[m
+ .../zip-cache/l+zH8bQrku3nOBXl_bXcIA==             |     1 [32m+[m
+ .../zip-cache/m+0SUbzIvhb_0K0Jn7JTWQ==             |     1 [32m+[m
+ .../zip-cache/mDgCDO3uRdGyGYt++YlwbQ==             |     1 [32m+[m
+ .../zip-cache/mK1osEAx4goZle9Dnt62bw==             |     1 [32m+[m
+ .../zip-cache/nPjZEju_IyqZZasOs0PBew==             |     1 [32m+[m
+ .../zip-cache/neCBDgO171eDnEIsBPrd7w==             |     1 [32m+[m
+ .../zip-cache/ngNzGyiO0LC_YHWmSjj18Q==             |     1 [32m+[m
+ .../zip-cache/nmvdBLyMXTrySZxb8evUrA==             |     1 [32m+[m
+ .../zip-cache/nvA21y4+9YHJCER0t1Y25g==             |     1 [32m+[m
+ .../zip-cache/nvHRM+rmTDMu6_ELvcigbw==             |     1 [32m+[m
+ .../zip-cache/o+h5Kkbh6mIYlC5vG76dVw==             |     1 [32m+[m
+ .../zip-cache/oe_C5TgbqkZKPNx9JjtuVw==             |     1 [32m+[m
+ .../zip-cache/pGWbE7yHdpU3qWsaRgnFCQ==             |     1 [32m+[m
+ .../zip-cache/pO00E5oaCdcnwIvXRzHRhg==             |     1 [32m+[m
+ .../zip-cache/ptzJjuRsMxwBTu9JwWZ6AQ==             |     1 [32m+[m
+ .../zip-cache/qBV7+ecPgazIl4rJ_44E4g==             |     1 [32m+[m
+ .../zip-cache/ql855f83V1mqAo55UDXdeQ==             |     1 [32m+[m
+ .../zip-cache/qlVfZar9ShwMnZc3GGlaDQ==             |     1 [32m+[m
+ .../zip-cache/quMsQCrr8rgtdUsktvIxqw==             |     1 [32m+[m
+ .../zip-cache/qzFGTH43nEgWxtolaMEs9g==             |     1 [32m+[m
+ .../zip-cache/r40nkVRw2S3lSiNd7pYVSw==             |     1 [32m+[m
+ .../zip-cache/rDNOxZvHxIpbSrJn4fwWZA==             |     1 [32m+[m
+ .../zip-cache/re5JB_PI0QMcxiXUgzrH3A==             |     1 [32m+[m
+ .../zip-cache/tFs4fklIA7fwIIuSkmtKpA==             |     1 [32m+[m
+ .../zip-cache/tL5lehWTptdmgehH994b7g==             |     1 [32m+[m
+ .../zip-cache/tgsnfmIK61jO7o1zIJeMtw==             |     1 [32m+[m
+ .../zip-cache/tjaRdx+uNBjvn_9nTXFjow==             |     1 [32m+[m
+ .../zip-cache/u5D9P7QpSZRbC85nvEIcRQ==             |     1 [32m+[m
+ .../zip-cache/u8RcD8ZE7oZEcmBeEEaxjA==             |     1 [32m+[m
+ .../zip-cache/uZ57Egg36nbEioi_+gLuYw==             |     1 [32m+[m
+ .../zip-cache/wA2gwRVfsC+i2ImVqJdglQ==             |     1 [32m+[m
+ .../zip-cache/weuGzdBrn1NTqphda9TOtg==             |     1 [32m+[m
+ .../zip-cache/xRqMIATsldVPiXIBSSSlYQ==             |     1 [32m+[m
+ .../zip-cache/xkzesfzNIIZFfxoryEmM7A==             |     1 [32m+[m
+ .../zip-cache/xoUe40ZtGv7kNY9fwvr+4g==             |     1 [32m+[m
+ .../zip-cache/y16ZEw_w9MM09fBDOLYsDA==             |     1 [32m+[m
+ .../zip-cache/yUi98GJglWI+8oTy0Vytyg==             |     1 [32m+[m
+ .../zip-cache/ynLgpA2F1wLsxIUtmPdciA==             |     1 [32m+[m
+ .../zip-cache/z_aeAnKl8NfnStcEJfCywg==             |     1 [32m+[m
+ .../compile-file-map.properties                    |    49 [32m+[m
+ .../debug/mergeDebugResources/merger.xml           | 16854 [32m+++++++++++++++++++[m
+ .../stripped.dir/layout/activity_video_lesson.xml  |    72 [32m+[m
+ .../compile-file-map.properties                    |    49 [32m+[m
+ .../debug/packageDebugResources/merger.xml         |    14 [32m+[m
+ .../stripped.dir/layout/activity_video_lesson.xml  |    72 [32m+[m
+ .../incremental/mergeDebugAssets/merger.xml        |     2 [32m+[m
+ .../incremental/mergeDebugJniLibFolders/merger.xml |     2 [32m+[m
+ .../packageDebug/tmp/debug/dex-renamer-state.txt   |    19 [32m+[m
+ .../tmp/debug/zip-cache/androidResources           |     1 [32m+[m
+ .../tmp/debug/zip-cache/javaResources0             |     1 [32m+[m
+ .../out/META-INF/app.kotlin_module                 |   Bin [31m0[m -> [32m24[m bytes
+ .../com/example/sealspeak/BuildConfig.class        |   Bin [31m0[m -> [32m768[m bytes
+ .../databinding/ActivityLoginBinding.class         |   Bin [31m0[m -> [32m3885[m bytes
+ .../databinding/ActivityMainBinding.class          |   Bin [31m0[m -> [32m3280[m bytes
+ .../databinding/ActivityOnboardingBinding.class    |   Bin [31m0[m -> [32m3164[m bytes
+ .../databinding/ActivityRegisterBinding.class      |   Bin [31m0[m -> [32m3811[m bytes
+ .../databinding/ActivitySplashBinding.class        |   Bin [31m0[m -> [32m2890[m bytes
+ .../databinding/ActivityVideoLessonBinding.class   |   Bin [31m0[m -> [32m4251[m bytes
+ .../databinding/FragmentGrammarBinding.class       |   Bin [31m0[m -> [32m2951[m bytes
+ .../databinding/FragmentGrammarDetailBinding.class |   Bin [31m0[m -> [32m3798[m bytes
+ .../databinding/FragmentHomeBinding.class          |   Bin [31m0[m -> [32m2869[m bytes
+ .../databinding/FragmentLessonsBinding.class       |   Bin [31m0[m -> [32m3208[m bytes
+ .../databinding/FragmentProfileBinding.class       |   Bin [31m0[m -> [32m3956[m bytes
+ .../databinding/FragmentRankingBinding.class       |   Bin [31m0[m -> [32m2951[m bytes
+ .../databinding/FragmentVideoBinding.class         |   Bin [31m0[m -> [32m2936[m bytes
+ .../databinding/FragmentVocabularyBinding.class    |   Bin [31m0[m -> [32m2975[m bytes
+ .../FragmentVocabularyDetailBinding.class          |   Bin [31m0[m -> [32m3449[m bytes
+ .../sealspeak/databinding/ItemGrammarBinding.class |   Bin [31m0[m -> [32m3168[m bytes
+ .../sealspeak/databinding/ItemRankingBinding.class |   Bin [31m0[m -> [32m3340[m bytes
+ .../databinding/ItemVideoLessonBinding.class       |   Bin [31m0[m -> [32m3197[m bytes
+ .../databinding/ItemVocabularyBinding.class        |   Bin [31m0[m -> [32m3192[m bytes
+ .../databinding/ItemWordCardBinding.class          |   Bin [31m0[m -> [32m3046[m bytes
+ .../databinding/OnboardingPageLevelBinding.class   |   Bin [31m0[m -> [32m3633[m bytes
+ .../OnboardingPageNicknameBinding.class            |   Bin [31m0[m -> [32m3036[m bytes
+ .../databinding/OnboardingPageReasonBinding.class  |   Bin [31m0[m -> [32m3645[m bytes
+ .../databinding/OnboardingPageTimeBinding.class    |   Bin [31m0[m -> [32m3621[m bytes
+ .../linked-resources-binary-format-debug.ap_       |   Bin [31m0[m -> [32m1948737[m bytes
+ .../processDebugResources/output-metadata.json     |    20 [32m+[m
+ .../debug/parseDebugLocalResources/R-def.txt       |   119 [32m+[m
+ .../manifest-merger-blame-debug-report.txt         |   384 [32m+[m
+ .../debug/mergeDebugJavaResource/base.jar          |   Bin [31m0[m -> [32m88568[m bytes
+ .../processDebugMainManifest/AndroidManifest.xml   |   206 [32m+[m
+ .../debug/processDebugManifest/AndroidManifest.xml |   206 [32m+[m
+ .../processDebugManifest/output-metadata.json      |    20 [32m+[m
+ .../mergeDebugResources/drawable_ic_back.xml.flat  |   Bin [31m0[m -> [32m692[m bytes
+ .../drawable_ic_google.xml.flat                    |   Bin [31m0[m -> [32m2736[m bytes
+ .../mergeDebugResources/drawable_ic_home.xml.flat  |   Bin [31m0[m -> [32m664[m bytes
+ .../drawable_ic_launcher_background.xml.flat       |   Bin [31m0[m -> [32m10716[m bytes
+ .../drawable_ic_launcher_foreground.xml.flat       |   Bin [31m0[m -> [32m6268[m bytes
+ .../drawable_ic_lessons.xml.flat                   |   Bin [31m0[m -> [32m1120[m bytes
+ .../drawable_ic_profile.xml.flat                   |   Bin [31m0[m -> [32m764[m bytes
+ .../drawable_ic_ranking.xml.flat                   |   Bin [31m0[m -> [32m696[m bytes
+ .../drawable_logo_sealspeak.xml.flat               |   Bin [31m0[m -> [32m5936[m bytes
+ .../layout_activity_login.xml.flat                 |   Bin [31m0[m -> [32m7224[m bytes
+ .../layout_activity_main.xml.flat                  |   Bin [31m0[m -> [32m1780[m bytes
+ .../layout_activity_onboarding.xml.flat            |   Bin [31m0[m -> [32m1396[m bytes
+ .../layout_activity_register.xml.flat              |   Bin [31m0[m -> [32m6828[m bytes
+ .../layout_activity_splash.xml.flat                |   Bin [31m0[m -> [32m1492[m bytes
+ .../layout_activity_video_lesson.xml.flat          |   Bin [31m0[m -> [32m4388[m bytes
+ .../layout_fragment_grammar.xml.flat               |   Bin [31m0[m -> [32m840[m bytes
+ .../layout_fragment_grammar_detail.xml.flat        |   Bin [31m0[m -> [32m6136[m bytes
+ .../layout_fragment_home.xml.flat                  |   Bin [31m0[m -> [32m6052[m bytes
+ .../layout_fragment_lessons.xml.flat               |   Bin [31m0[m -> [32m1576[m bytes
+ .../layout_fragment_profile.xml.flat               |   Bin [31m0[m -> [32m5684[m bytes
+ .../layout_fragment_ranking.xml.flat               |   Bin [31m0[m -> [32m1532[m bytes
+ .../layout_fragment_video.xml.flat                 |   Bin [31m0[m -> [32m832[m bytes
+ .../layout_fragment_vocabulary.xml.flat            |   Bin [31m0[m -> [32m848[m bytes
+ .../layout_fragment_vocabulary_detail.xml.flat     |   Bin [31m0[m -> [32m2172[m bytes
+ .../layout_item_grammar.xml.flat                   |   Bin [31m0[m -> [32m2056[m bytes
+ .../layout_item_ranking.xml.flat                   |   Bin [31m0[m -> [32m2752[m bytes
+ .../layout_item_video_lesson.xml.flat              |   Bin [31m0[m -> [32m2064[m bytes
+ .../layout_item_vocabulary.xml.flat                |   Bin [31m0[m -> [32m2068[m bytes
+ .../layout_item_word_card.xml.flat                 |   Bin [31m0[m -> [32m2564[m bytes
+ .../layout_onboarding_page_level.xml.flat          |   Bin [31m0[m -> [32m4496[m bytes
+ .../layout_onboarding_page_nickname.xml.flat       |   Bin [31m0[m -> [32m3732[m bytes
+ .../layout_onboarding_page_reason.xml.flat         |   Bin [31m0[m -> [32m4464[m bytes
+ .../layout_onboarding_page_time.xml.flat           |   Bin [31m0[m -> [32m4452[m bytes
+ .../menu_bottom_nav_menu.xml.flat                  |   Bin [31m0[m -> [32m1272[m bytes
+ .../mipmap-anydpi-v26_ic_launcher.xml.flat         |   Bin [31m0[m -> [32m580[m bytes
+ .../mipmap-anydpi-v26_ic_launcher_round.xml.flat   |   Bin [31m0[m -> [32m592[m bytes
+ .../mipmap-hdpi_ic_launcher.webp.flat              |   Bin [31m0[m -> [32m2676[m bytes
+ .../mipmap-hdpi_ic_launcher_round.webp.flat        |   Bin [31m0[m -> [32m4524[m bytes
+ .../mipmap-mdpi_ic_launcher.webp.flat              |   Bin [31m0[m -> [32m2096[m bytes
+ .../mipmap-mdpi_ic_launcher_round.webp.flat        |   Bin [31m0[m -> [32m3080[m bytes
+ .../mipmap-xhdpi_ic_launcher.webp.flat             |   Bin [31m0[m -> [32m3572[m bytes
+ .../mipmap-xhdpi_ic_launcher_round.webp.flat       |   Bin [31m0[m -> [32m6292[m bytes
+ .../mipmap-xxhdpi_ic_launcher.webp.flat            |   Bin [31m0[m -> [32m4948[m bytes
+ .../mipmap-xxhdpi_ic_launcher_round.webp.flat      |   Bin [31m0[m -> [32m8984[m bytes
+ .../mipmap-xxxhdpi_ic_launcher.webp.flat           |   Bin [31m0[m -> [32m6584[m bytes
+ .../mipmap-xxxhdpi_ic_launcher_round.webp.flat     |   Bin [31m0[m -> [32m11828[m bytes
+ .../values-af_values-af.arsc.flat                  |   Bin [31m0[m -> [32m11364[m bytes
+ .../values-am_values-am.arsc.flat                  |   Bin [31m0[m -> [32m13100[m bytes
+ .../values-ar_values-ar.arsc.flat                  |   Bin [31m0[m -> [32m13336[m bytes
+ .../values-as_values-as.arsc.flat                  |   Bin [31m0[m -> [32m13392[m bytes
+ .../values-az_values-az.arsc.flat                  |   Bin [31m0[m -> [32m11856[m bytes
+ .../values-b+es+419_values-b+es+419.arsc.flat      |   Bin [31m0[m -> [32m7040[m bytes
+ .../values-b+sr+Latn_values-b+sr+Latn.arsc.flat    |   Bin [31m0[m -> [32m12408[m bytes
+ .../values-be_values-be.arsc.flat                  |   Bin [31m0[m -> [32m14104[m bytes
+ .../values-bg_values-bg.arsc.flat                  |   Bin [31m0[m -> [32m14136[m bytes
+ .../values-bn_values-bn.arsc.flat                  |   Bin [31m0[m -> [32m15388[m bytes
+ .../values-bs_values-bs.arsc.flat                  |   Bin [31m0[m -> [32m11748[m bytes
+ .../values-ca_values-ca.arsc.flat                  |   Bin [31m0[m -> [32m11932[m bytes
+ .../values-cs_values-cs.arsc.flat                  |   Bin [31m0[m -> [32m11900[m bytes
+ .../values-da_values-da.arsc.flat                  |   Bin [31m0[m -> [32m11424[m bytes
+ .../values-de_values-de.arsc.flat                  |   Bin [31m0[m -> [32m11856[m bytes
+ .../values-el_values-el.arsc.flat                  |   Bin [31m0[m -> [32m14536[m bytes
+ .../values-en-rAU_values-en-rAU.arsc.flat          |   Bin [31m0[m -> [32m3316[m bytes
+ .../values-en-rCA_values-en-rCA.arsc.flat          |   Bin [31m0[m -> [32m3148[m bytes
+ .../values-en-rGB_values-en-rGB.arsc.flat          |   Bin [31m0[m -> [32m11672[m bytes
+ .../values-en-rIN_values-en-rIN.arsc.flat          |   Bin [31m0[m -> [32m3316[m bytes
+ .../values-en-rXC_values-en-rXC.arsc.flat          |   Bin [31m0[m -> [32m16284[m bytes
+ .../values-es-rUS_values-es-rUS.arsc.flat          |   Bin [31m0[m -> [32m12380[m bytes
+ .../values-es_values-es.arsc.flat                  |   Bin [31m0[m -> [32m11984[m bytes
+ .../values-et_values-et.arsc.flat                  |   Bin [31m0[m -> [32m11612[m bytes
+ .../values-eu_values-eu.arsc.flat                  |   Bin [31m0[m -> [32m11756[m bytes
+ .../values-fa_values-fa.arsc.flat                  |   Bin [31m0[m -> [32m13188[m bytes
+ .../values-fi_values-fi.arsc.flat                  |   Bin [31m0[m -> [32m11516[m bytes
+ .../values-fr-rCA_values-fr-rCA.arsc.flat          |   Bin [31m0[m -> [32m12568[m bytes
+ .../values-fr_values-fr.arsc.flat                  |   Bin [31m0[m -> [32m12032[m bytes
+ .../values-gl_values-gl.arsc.flat                  |   Bin [31m0[m -> [32m11976[m bytes
+ .../values-gu_values-gu.arsc.flat                  |   Bin [31m0[m -> [32m15016[m bytes
+ ...320dp-port-v13_values-h320dp-port-v13.arsc.flat |   Bin [31m0[m -> [32m292[m bytes
+ ...360dp-land-v13_values-h360dp-land-v13.arsc.flat |   Bin [31m0[m -> [32m800[m bytes
+ ...480dp-land-v13_values-h480dp-land-v13.arsc.flat |   Bin [31m0[m -> [32m800[m bytes
+ .../values-h480dp-v13_values-h480dp-v13.arsc.flat  |   Bin [31m0[m -> [32m496[m bytes
+ ...550dp-port-v13_values-h550dp-port-v13.arsc.flat |   Bin [31m0[m -> [32m292[m bytes
+ .../values-h720dp-v13_values-h720dp-v13.arsc.flat  |   Bin [31m0[m -> [32m276[m bytes
+ .../values-hdpi-v4_values-hdpi-v4.arsc.flat        |   Bin [31m0[m -> [32m484[m bytes
+ .../values-hi_values-hi.arsc.flat                  |   Bin [31m0[m -> [32m15416[m bytes
+ .../values-hr_values-hr.arsc.flat                  |   Bin [31m0[m -> [32m11728[m bytes
+ .../values-hu_values-hu.arsc.flat                  |   Bin [31m0[m -> [32m12160[m bytes
+ .../values-hy_values-hy.arsc.flat                  |   Bin [31m0[m -> [32m13860[m bytes
+ .../values-in_values-in.arsc.flat                  |   Bin [31m0[m -> [32m11460[m bytes
+ .../values-is_values-is.arsc.flat                  |   Bin [31m0[m -> [32m11484[m bytes
+ .../values-it_values-it.arsc.flat                  |   Bin [31m0[m -> [32m11760[m bytes
+ .../values-iw_values-iw.arsc.flat                  |   Bin [31m0[m -> [32m12516[m bytes
+ .../values-ja_values-ja.arsc.flat                  |   Bin [31m0[m -> [32m12236[m bytes
+ .../values-ka_values-ka.arsc.flat                  |   Bin [31m0[m -> [32m15616[m bytes
+ .../values-kk_values-kk.arsc.flat                  |   Bin [31m0[m -> [32m13484[m bytes
+ .../values-km_values-km.arsc.flat                  |   Bin [31m0[m -> [32m15964[m bytes
+ .../values-kn_values-kn.arsc.flat                  |   Bin [31m0[m -> [32m16264[m bytes
+ .../values-ko_values-ko.arsc.flat                  |   Bin [31m0[m -> [32m11788[m bytes
+ .../values-ky_values-ky.arsc.flat                  |   Bin [31m0[m -> [32m13728[m bytes
+ .../values-land_values-land.arsc.flat              |   Bin [31m0[m -> [32m2860[m bytes
+ .../values-large-v4_values-large-v4.arsc.flat      |   Bin [31m0[m -> [32m1420[m bytes
+ .../values-ldltr-v21_values-ldltr-v21.arsc.flat    |   Bin [31m0[m -> [32m340[m bytes
+ .../values-ldrtl-v17_values-ldrtl-v17.arsc.flat    |   Bin [31m0[m -> [32m480[m bytes
+ .../values-lo_values-lo.arsc.flat                  |   Bin [31m0[m -> [32m15456[m bytes
+ .../values-lt_values-lt.arsc.flat                  |   Bin [31m0[m -> [32m12180[m bytes
+ .../values-lv_values-lv.arsc.flat                  |   Bin [31m0[m -> [32m12240[m bytes
+ .../values-mk_values-mk.arsc.flat                  |   Bin [31m0[m -> [32m13840[m bytes
+ .../values-ml_values-ml.arsc.flat                  |   Bin [31m0[m -> [32m17120[m bytes
+ .../values-mn_values-mn.arsc.flat                  |   Bin [31m0[m -> [32m13612[m bytes
+ .../values-mr_values-mr.arsc.flat                  |   Bin [31m0[m -> [32m15080[m bytes
+ .../values-ms_values-ms.arsc.flat                  |   Bin [31m0[m -> [32m11680[m bytes
+ .../values-my_values-my.arsc.flat                  |   Bin [31m0[m -> [32m16900[m bytes
+ .../values-nb_values-nb.arsc.flat                  |   Bin [31m0[m -> [32m11316[m bytes
+ .../values-ne_values-ne.arsc.flat                  |   Bin [31m0[m -> [32m16108[m bytes
+ .../values-night-v8_values-night-v8.arsc.flat      |   Bin [31m0[m -> [32m5836[m bytes
+ .../values-nl_values-nl.arsc.flat                  |   Bin [31m0[m -> [32m11692[m bytes
+ .../values-or_values-or.arsc.flat                  |   Bin [31m0[m -> [32m13924[m bytes
+ .../values-pa_values-pa.arsc.flat                  |   Bin [31m0[m -> [32m15012[m bytes
+ .../values-pl_values-pl.arsc.flat                  |   Bin [31m0[m -> [32m11860[m bytes
+ .../values-port_values-port.arsc.flat              |   Bin [31m0[m -> [32m248[m bytes
+ .../values-pt-rBR_values-pt-rBR.arsc.flat          |   Bin [31m0[m -> [32m12284[m bytes
+ .../values-pt-rPT_values-pt-rPT.arsc.flat          |   Bin [31m0[m -> [32m12388[m bytes
+ .../values-pt_values-pt.arsc.flat                  |   Bin [31m0[m -> [32m3336[m bytes
+ .../values-ro_values-ro.arsc.flat                  |   Bin [31m0[m -> [32m11932[m bytes
+ .../values-ru_values-ru.arsc.flat                  |   Bin [31m0[m -> [32m13980[m bytes
+ .../values-si_values-si.arsc.flat                  |   Bin [31m0[m -> [32m15164[m bytes
+ .../values-sk_values-sk.arsc.flat                  |   Bin [31m0[m -> [32m11944[m bytes
+ .../values-sl_values-sl.arsc.flat                  |   Bin [31m0[m -> [32m11752[m bytes
+ .../values-sq_values-sq.arsc.flat                  |   Bin [31m0[m -> [32m11880[m bytes
+ .../values-sr_values-sr.arsc.flat                  |   Bin [31m0[m -> [32m13520[m bytes
+ .../values-sv_values-sv.arsc.flat                  |   Bin [31m0[m -> [32m11488[m bytes
+ ...values-sw600dp-v13_values-sw600dp-v13.arsc.flat |   Bin [31m0[m -> [32m1712[m bytes
+ .../values-sw_values-sw.arsc.flat                  |   Bin [31m0[m -> [32m11728[m bytes
+ .../values-ta_values-ta.arsc.flat                  |   Bin [31m0[m -> [32m16804[m bytes
+ .../values-te_values-te.arsc.flat                  |   Bin [31m0[m -> [32m16172[m bytes
+ .../values-th_values-th.arsc.flat                  |   Bin [31m0[m -> [32m14956[m bytes
+ .../values-tl_values-tl.arsc.flat                  |   Bin [31m0[m -> [32m11968[m bytes
+ .../values-tr_values-tr.arsc.flat                  |   Bin [31m0[m -> [32m11664[m bytes
+ .../values-uk_values-uk.arsc.flat                  |   Bin [31m0[m -> [32m13860[m bytes
+ .../values-ur_values-ur.arsc.flat                  |   Bin [31m0[m -> [32m13408[m bytes
+ .../values-uz_values-uz.arsc.flat                  |   Bin [31m0[m -> [32m11652[m bytes
+ .../values-v16_values-v16.arsc.flat                |   Bin [31m0[m -> [32m408[m bytes
+ .../values-v17_values-v17.arsc.flat                |   Bin [31m0[m -> [32m3692[m bytes
+ .../values-v18_values-v18.arsc.flat                |   Bin [31m0[m -> [32m244[m bytes
+ .../values-v21_values-v21.arsc.flat                |   Bin [31m0[m -> [32m20060[m bytes
+ .../values-v22_values-v22.arsc.flat                |   Bin [31m0[m -> [32m932[m bytes
+ .../values-v23_values-v23.arsc.flat                |   Bin [31m0[m -> [32m5736[m bytes
+ .../values-v24_values-v24.arsc.flat                |   Bin [31m0[m -> [32m1792[m bytes
+ .../values-v25_values-v25.arsc.flat                |   Bin [31m0[m -> [32m580[m bytes
+ .../values-v26_values-v26.arsc.flat                |   Bin [31m0[m -> [32m1052[m bytes
+ .../values-v28_values-v28.arsc.flat                |   Bin [31m0[m -> [32m1808[m bytes
+ .../values-v31_values-v31.arsc.flat                |   Bin [31m0[m -> [32m46000[m bytes
+ .../values-v34_values-v34.arsc.flat                |   Bin [31m0[m -> [32m10096[m bytes
+ .../values-v35_values-v35.arsc.flat                |   Bin [31m0[m -> [32m604[m bytes
+ .../values-vi_values-vi.arsc.flat                  |   Bin [31m0[m -> [32m12372[m bytes
+ ...320dp-land-v13_values-w320dp-land-v13.arsc.flat |   Bin [31m0[m -> [32m344[m bytes
+ ...360dp-port-v13_values-w360dp-port-v13.arsc.flat |   Bin [31m0[m -> [32m732[m bytes
+ ...400dp-port-v13_values-w400dp-port-v13.arsc.flat |   Bin [31m0[m -> [32m728[m bytes
+ ...600dp-land-v13_values-w600dp-land-v13.arsc.flat |   Bin [31m0[m -> [32m284[m bytes
+ .../values-watch-v20_values-watch-v20.arsc.flat    |   Bin [31m0[m -> [32m1384[m bytes
+ .../values-watch-v21_values-watch-v21.arsc.flat    |   Bin [31m0[m -> [32m900[m bytes
+ .../values-xlarge-v4_values-xlarge-v4.arsc.flat    |   Bin [31m0[m -> [32m576[m bytes
+ .../values-zh-rCN_values-zh-rCN.arsc.flat          |   Bin [31m0[m -> [32m11772[m bytes
+ .../values-zh-rHK_values-zh-rHK.arsc.flat          |   Bin [31m0[m -> [32m11788[m bytes
+ .../values-zh-rTW_values-zh-rTW.arsc.flat          |   Bin [31m0[m -> [32m11792[m bytes
+ .../values-zu_values-zu.arsc.flat                  |   Bin [31m0[m -> [32m11812[m bytes
+ .../mergeDebugResources/values_values.arsc.flat    |   Bin [31m0[m -> [32m1049044[m bytes
+ .../mergeDebugResources/xml_backup_rules.xml.flat  |   Bin [31m0[m -> [32m148[m bytes
+ .../xml_data_extraction_rules.xml.flat             |   Bin [31m0[m -> [32m188[m bytes
+ .../out/multi-v2/mergeDebugResources.json          | 13297 [32m+++++++++++++++[m
+ .../out/multi-v2/values-af.json                    |   147 [32m+[m
+ .../out/multi-v2/values-am.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ar.json                    |   147 [32m+[m
+ .../out/multi-v2/values-as.json                    |   147 [32m+[m
+ .../out/multi-v2/values-az.json                    |   147 [32m+[m
+ .../out/multi-v2/values-b+es+419.json              |    20 [32m+[m
+ .../out/multi-v2/values-b+sr+Latn.json             |   147 [32m+[m
+ .../out/multi-v2/values-be.json                    |   147 [32m+[m
+ .../out/multi-v2/values-bg.json                    |   147 [32m+[m
+ .../out/multi-v2/values-bn.json                    |   147 [32m+[m
+ .../out/multi-v2/values-bs.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ca.json                    |   147 [32m+[m
+ .../out/multi-v2/values-cs.json                    |   147 [32m+[m
+ .../out/multi-v2/values-da.json                    |   147 [32m+[m
+ .../out/multi-v2/values-de.json                    |   147 [32m+[m
+ .../out/multi-v2/values-el.json                    |   147 [32m+[m
+ .../out/multi-v2/values-en-rAU.json                |    94 [32m+[m
+ .../out/multi-v2/values-en-rCA.json                |    77 [32m+[m
+ .../out/multi-v2/values-en-rGB.json                |   147 [32m+[m
+ .../out/multi-v2/values-en-rIN.json                |    94 [32m+[m
+ .../out/multi-v2/values-en-rXC.json                |    77 [32m+[m
+ .../out/multi-v2/values-es-rUS.json                |   147 [32m+[m
+ .../out/multi-v2/values-es.json                    |   147 [32m+[m
+ .../out/multi-v2/values-et.json                    |   147 [32m+[m
+ .../out/multi-v2/values-eu.json                    |   147 [32m+[m
+ .../out/multi-v2/values-fa.json                    |   147 [32m+[m
+ .../out/multi-v2/values-fi.json                    |   147 [32m+[m
+ .../out/multi-v2/values-fr-rCA.json                |   147 [32m+[m
+ .../out/multi-v2/values-fr.json                    |   147 [32m+[m
+ .../out/multi-v2/values-gl.json                    |   147 [32m+[m
+ .../out/multi-v2/values-gu.json                    |   147 [32m+[m
+ .../out/multi-v2/values-h320dp-port-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-h360dp-land-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-h480dp-land-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-h480dp-v13.json            |    19 [32m+[m
+ .../out/multi-v2/values-h550dp-port-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-h720dp-v13.json            |    19 [32m+[m
+ .../out/multi-v2/values-hdpi-v4.json               |    20 [32m+[m
+ .../out/multi-v2/values-hi.json                    |   147 [32m+[m
+ .../out/multi-v2/values-hr.json                    |   147 [32m+[m
+ .../out/multi-v2/values-hu.json                    |   147 [32m+[m
+ .../out/multi-v2/values-hy.json                    |   147 [32m+[m
+ .../out/multi-v2/values-in.json                    |   147 [32m+[m
+ .../out/multi-v2/values-is.json                    |   147 [32m+[m
+ .../out/multi-v2/values-it.json                    |   147 [32m+[m
+ .../out/multi-v2/values-iw.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ja.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ka.json                    |   147 [32m+[m
+ .../out/multi-v2/values-kk.json                    |   147 [32m+[m
+ .../out/multi-v2/values-km.json                    |   147 [32m+[m
+ .../out/multi-v2/values-kn.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ko.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ky.json                    |   147 [32m+[m
+ .../out/multi-v2/values-land.json                  |    38 [32m+[m
+ .../out/multi-v2/values-large-v4.json              |    36 [32m+[m
+ .../out/multi-v2/values-ldltr-v21.json             |    19 [32m+[m
+ .../out/multi-v2/values-ldrtl-v17.json             |    19 [32m+[m
+ .../out/multi-v2/values-lo.json                    |   147 [32m+[m
+ .../out/multi-v2/values-lt.json                    |   147 [32m+[m
+ .../out/multi-v2/values-lv.json                    |   147 [32m+[m
+ .../out/multi-v2/values-mk.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ml.json                    |   147 [32m+[m
+ .../out/multi-v2/values-mn.json                    |   147 [32m+[m
+ .../out/multi-v2/values-mr.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ms.json                    |   147 [32m+[m
+ .../out/multi-v2/values-my.json                    |   147 [32m+[m
+ .../out/multi-v2/values-nb.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ne.json                    |   147 [32m+[m
+ .../out/multi-v2/values-night-v8.json              |    62 [32m+[m
+ .../out/multi-v2/values-nl.json                    |   147 [32m+[m
+ .../out/multi-v2/values-or.json                    |   147 [32m+[m
+ .../out/multi-v2/values-pa.json                    |   147 [32m+[m
+ .../out/multi-v2/values-pl.json                    |   147 [32m+[m
+ .../out/multi-v2/values-port.json                  |    19 [32m+[m
+ .../out/multi-v2/values-pt-rBR.json                |   147 [32m+[m
+ .../out/multi-v2/values-pt-rPT.json                |   147 [32m+[m
+ .../out/multi-v2/values-pt.json                    |    94 [32m+[m
+ .../out/multi-v2/values-ro.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ru.json                    |   147 [32m+[m
+ .../out/multi-v2/values-si.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sk.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sl.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sq.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sr.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sv.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sw.json                    |   147 [32m+[m
+ .../out/multi-v2/values-sw600dp-v13.json           |    38 [32m+[m
+ .../out/multi-v2/values-ta.json                    |   147 [32m+[m
+ .../out/multi-v2/values-te.json                    |   147 [32m+[m
+ .../out/multi-v2/values-th.json                    |   147 [32m+[m
+ .../out/multi-v2/values-tl.json                    |   147 [32m+[m
+ .../out/multi-v2/values-tr.json                    |   147 [32m+[m
+ .../out/multi-v2/values-uk.json                    |   147 [32m+[m
+ .../out/multi-v2/values-ur.json                    |   147 [32m+[m
+ .../out/multi-v2/values-uz.json                    |   147 [32m+[m
+ .../out/multi-v2/values-v16.json                   |    20 [32m+[m
+ .../out/multi-v2/values-v17.json                   |    20 [32m+[m
+ .../out/multi-v2/values-v18.json                   |    19 [32m+[m
+ .../out/multi-v2/values-v21.json                   |    57 [32m+[m
+ .../out/multi-v2/values-v22.json                   |    20 [32m+[m
+ .../out/multi-v2/values-v23.json                   |    58 [32m+[m
+ .../out/multi-v2/values-v24.json                   |    38 [32m+[m
+ .../out/multi-v2/values-v25.json                   |    20 [32m+[m
+ .../out/multi-v2/values-v26.json                   |    20 [32m+[m
+ .../out/multi-v2/values-v28.json                   |    47 [32m+[m
+ .../out/multi-v2/values-v31.json                   |    20 [32m+[m
+ .../out/multi-v2/values-v34.json                   |    19 [32m+[m
+ .../out/multi-v2/values-v35.json                   |    19 [32m+[m
+ .../out/multi-v2/values-vi.json                    |   147 [32m+[m
+ .../out/multi-v2/values-w320dp-land-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-w360dp-port-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-w400dp-port-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-w600dp-land-v13.json       |    19 [32m+[m
+ .../out/multi-v2/values-watch-v20.json             |    45 [32m+[m
+ .../out/multi-v2/values-watch-v21.json             |    20 [32m+[m
+ .../out/multi-v2/values-xlarge-v4.json             |    19 [32m+[m
+ .../out/multi-v2/values-zh-rCN.json                |   147 [32m+[m
+ .../out/multi-v2/values-zh-rHK.json                |   147 [32m+[m
+ .../out/multi-v2/values-zh-rTW.json                |   147 [32m+[m
+ .../out/multi-v2/values-zu.json                    |   147 [32m+[m
+ .../mergeDebugResources/out/multi-v2/values.json   |   659 [32m+[m
+ .../mergeDebugResources/out/single/layout.json     |   102 [32m+[m
+ .../out/single/mergeDebugResources.json            |   198 [32m+[m
+ .../debug/extractDeepLinksDebug/navigation.json    |     7 [32m+[m
+ .../nestedResourcesValidationReport.txt            |     1 [32m+[m
+ .../AndroidManifest.xml                            |   206 [32m+[m
+ .../output-metadata.json                           |    20 [32m+[m
+ .../packageDebugResources/drawable/ic_back.xml     |     3 [32m+[m
+ .../packageDebugResources/drawable/ic_google.xml   |    30 [32m+[m
+ .../packageDebugResources/drawable/ic_home.xml     |     3 [32m+[m
+ .../drawable/ic_launcher_background.xml            |    74 [32m+[m
+ .../drawable/ic_launcher_foreground.xml            |    93 [32m+[m
+ .../packageDebugResources/drawable/ic_lessons.xml  |     3 [32m+[m
+ .../packageDebugResources/drawable/ic_profile.xml  |     3 [32m+[m
+ .../packageDebugResources/drawable/ic_ranking.xml  |     3 [32m+[m
+ .../drawable/logo_sealspeak.xml                    |    88 [32m+[m
+ .../layout/activity_login.xml                      |   114 [32m+[m
+ .../packageDebugResources/layout/activity_main.xml |    26 [32m+[m
+ .../layout/activity_onboarding.xml                 |    22 [32m+[m
+ .../layout/activity_register.xml                   |   117 [32m+[m
+ .../layout/activity_splash.xml                     |    24 [32m+[m
+ .../layout/activity_video_lesson.xml               |    72 [32m+[m
+ .../layout/fragment_grammar.xml                    |    13 [32m+[m
+ .../layout/fragment_grammar_detail.xml             |   102 [32m+[m
+ .../packageDebugResources/layout/fragment_home.xml |   107 [32m+[m
+ .../layout/fragment_lessons.xml                    |    24 [32m+[m
+ .../layout/fragment_profile.xml                    |   102 [32m+[m
+ .../layout/fragment_ranking.xml                    |    24 [32m+[m
+ .../layout/fragment_video.xml                      |    13 [32m+[m
+ .../layout/fragment_vocabulary.xml                 |    13 [32m+[m
+ .../layout/fragment_vocabulary_detail.xml          |    33 [32m+[m
+ .../packageDebugResources/layout/item_grammar.xml  |    34 [32m+[m
+ .../packageDebugResources/layout/item_ranking.xml  |    45 [32m+[m
+ .../layout/item_video_lesson.xml                   |    34 [32m+[m
+ .../layout/item_vocabulary.xml                     |    34 [32m+[m
+ .../layout/item_word_card.xml                      |    43 [32m+[m
+ .../layout/onboarding_page_level.xml               |    75 [32m+[m
+ .../layout/onboarding_page_nickname.xml            |    60 [32m+[m
+ .../layout/onboarding_page_reason.xml              |    75 [32m+[m
+ .../layout/onboarding_page_time.xml                |    75 [32m+[m
+ .../packageDebugResources/menu/bottom_nav_menu.xml |    24 [32m+[m
+ .../mipmap-anydpi-v26/ic_launcher.xml              |     6 [32m+[m
+ .../mipmap-anydpi-v26/ic_launcher_round.xml        |     6 [32m+[m
+ .../mipmap-hdpi-v4/ic_launcher.webp                |   Bin [31m0[m -> [32m2542[m bytes
+ .../mipmap-hdpi-v4/ic_launcher_round.webp          |   Bin [31m0[m -> [32m4380[m bytes
+ .../mipmap-mdpi-v4/ic_launcher.webp                |   Bin [31m0[m -> [32m1964[m bytes
+ .../mipmap-mdpi-v4/ic_launcher_round.webp          |   Bin [31m0[m -> [32m2936[m bytes
+ .../mipmap-xhdpi-v4/ic_launcher.webp               |   Bin [31m0[m -> [32m3438[m bytes
+ .../mipmap-xhdpi-v4/ic_launcher_round.webp         |   Bin [31m0[m -> [32m6148[m bytes
+ .../mipmap-xxhdpi-v4/ic_launcher.webp              |   Bin [31m0[m -> [32m4814[m bytes
+ .../mipmap-xxhdpi-v4/ic_launcher_round.webp        |   Bin [31m0[m -> [32m8840[m bytes
+ .../mipmap-xxxhdpi-v4/ic_launcher.webp             |   Bin [31m0[m -> [32m6452[m bytes
+ .../mipmap-xxxhdpi-v4/ic_launcher_round.webp       |   Bin [31m0[m -> [32m11684[m bytes
+ .../values-night-v8/values-night-v8.xml            |    11 [32m+[m
+ .../debug/packageDebugResources/values/values.xml  |    22 [32m+[m
+ .../packageDebugResources/xml/backup_rules.xml     |    13 [32m+[m
+ .../xml/data_extraction_rules.xml                  |    19 [32m+[m
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_0.jar |   Bin [31m0[m -> [32m30517[m bytes
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_1.jar |   Bin [31m0[m -> [32m31655[m bytes
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_2.jar |   Bin [31m0[m -> [32m54551[m bytes
+ ...e4c2993d6cf7080d97b37a8317cdb9d2d025353b7_3.jar |   Bin [31m0[m -> [32m74147[m bytes
+ .../out/com/example/sealspeak/BuildConfig.dex      |   Bin [31m0[m -> [32m1144[m bytes
+ .../sealspeak/GrammarAdapter$ViewHolder.dex        |   Bin [31m0[m -> [32m2516[m bytes
+ .../out/com/example/sealspeak/GrammarAdapter.dex   |   Bin [31m0[m -> [32m4636[m bytes
+ .../sealspeak/GrammarDetailFragment$Companion.dex  |   Bin [31m0[m -> [32m2372[m bytes
+ .../example/sealspeak/GrammarDetailFragment.dex    |   Bin [31m0[m -> [32m5716[m bytes
+ .../out/com/example/sealspeak/GrammarFragment.dex  |   Bin [31m0[m -> [32m7092[m bytes
+ .../out/com/example/sealspeak/GrammarLesson.dex    |   Bin [31m0[m -> [32m4904[m bytes
+ .../out/com/example/sealspeak/HomeFragment.dex     |   Bin [31m0[m -> [32m4572[m bytes
+ .../out/com/example/sealspeak/LessonsFragment.dex  |   Bin [31m0[m -> [32m4088[m bytes
+ .../com/example/sealspeak/LessonsPagerAdapter.dex  |   Bin [31m0[m -> [32m1812[m bytes
+ .../out/com/example/sealspeak/LoginActivity.dex    |   Bin [31m0[m -> [32m11964[m bytes
+ .../out/com/example/sealspeak/MainActivity.dex     |   Bin [31m0[m -> [32m2852[m bytes
+ .../com/example/sealspeak/OnboardingActivity.dex   |   Bin [31m0[m -> [32m8708[m bytes
+ .../sealspeak/OnboardingAdapter$PageViewHolder.dex |   Bin [31m0[m -> [32m1700[m bytes
+ .../com/example/sealspeak/OnboardingAdapter.dex    |   Bin [31m0[m -> [32m5676[m bytes
+ .../out/com/example/sealspeak/PointsManager.dex    |   Bin [31m0[m -> [32m2360[m bytes
+ .../out/com/example/sealspeak/ProfileFragment.dex  |   Bin [31m0[m -> [32m7380[m bytes
+ .../sealspeak/RankingAdapter$ViewHolder.dex        |   Bin [31m0[m -> [32m2688[m bytes
+ .../out/com/example/sealspeak/RankingAdapter.dex   |   Bin [31m0[m -> [32m4008[m bytes
+ .../out/com/example/sealspeak/RankingFragment.dex  |   Bin [31m0[m -> [32m5992[m bytes
+ .../out/com/example/sealspeak/RankingUser.dex      |   Bin [31m0[m -> [32m3252[m bytes
+ .../out/com/example/sealspeak/RegisterActivity.dex |   Bin [31m0[m -> [32m6004[m bytes
+ .../out/com/example/sealspeak/SplashActivity.dex   |   Bin [31m0[m -> [32m5784[m bytes
+ .../out/com/example/sealspeak/VideoFragment.dex    |   Bin [31m0[m -> [32m6708[m bytes
+ .../out/com/example/sealspeak/VideoLesson.dex      |   Bin [31m0[m -> [32m3256[m bytes
+ .../VideoLessonActivity$loadLesson$1$1.dex         |   Bin [31m0[m -> [32m2612[m bytes
+ .../com/example/sealspeak/VideoLessonActivity.dex  |   Bin [31m0[m -> [32m9308[m bytes
+ .../sealspeak/VideoLessonAdapter$ViewHolder.dex    |   Bin [31m0[m -> [32m2536[m bytes
+ .../com/example/sealspeak/VideoLessonAdapter.dex   |   Bin [31m0[m -> [32m4820[m bytes
+ .../sealspeak/VocabularyAdapter$ViewHolder.dex     |   Bin [31m0[m -> [32m2540[m bytes
+ .../com/example/sealspeak/VocabularyAdapter.dex    |   Bin [31m0[m -> [32m4872[m bytes
+ .../com/example/sealspeak/VocabularyCategory.dex   |   Bin [31m0[m -> [32m3828[m bytes
+ .../VocabularyDetailFragment$Companion.dex         |   Bin [31m0[m -> [32m4004[m bytes
+ .../example/sealspeak/VocabularyDetailFragment.dex |   Bin [31m0[m -> [32m6916[m bytes
+ .../com/example/sealspeak/VocabularyFragment.dex   |   Bin [31m0[m -> [32m7044[m bytes
+ .../sealspeak/WordCardAdapter$ViewHolder.dex       |   Bin [31m0[m -> [32m2248[m bytes
+ .../out/com/example/sealspeak/WordCardAdapter.dex  |   Bin [31m0[m -> [32m3388[m bytes
+ .../sealspeak/databinding/ActivityLoginBinding.dex |   Bin [31m0[m -> [32m3040[m bytes
+ .../sealspeak/databinding/ActivityMainBinding.dex  |   Bin [31m0[m -> [32m2712[m bytes
+ .../databinding/ActivityOnboardingBinding.dex      |   Bin [31m0[m -> [32m2676[m bytes
+ .../databinding/ActivityRegisterBinding.dex        |   Bin [31m0[m -> [32m3000[m bytes
+ .../databinding/ActivitySplashBinding.dex          |   Bin [31m0[m -> [32m2520[m bytes
+ .../databinding/ActivityVideoLessonBinding.dex     |   Bin [31m0[m -> [32m3264[m bytes
+ .../databinding/FragmentGrammarBinding.dex         |   Bin [31m0[m -> [32m2544[m bytes
+ .../databinding/FragmentGrammarDetailBinding.dex   |   Bin [31m0[m -> [32m3044[m bytes
+ .../sealspeak/databinding/FragmentHomeBinding.dex  |   Bin [31m0[m -> [32m2516[m bytes
+ .../databinding/FragmentLessonsBinding.dex         |   Bin [31m0[m -> [32m2688[m bytes
+ .../databinding/FragmentProfileBinding.dex         |   Bin [31m0[m -> [32m3136[m bytes
+ .../databinding/FragmentRankingBinding.dex         |   Bin [31m0[m -> [32m2544[m bytes
+ .../sealspeak/databinding/FragmentVideoBinding.dex |   Bin [31m0[m -> [32m2536[m bytes
+ .../databinding/FragmentVocabularyBinding.dex      |   Bin [31m0[m -> [32m2560[m bytes
+ .../FragmentVocabularyDetailBinding.dex            |   Bin [31m0[m -> [32m2828[m bytes
+ .../sealspeak/databinding/ItemGrammarBinding.dex   |   Bin [31m0[m -> [32m2656[m bytes
+ .../sealspeak/databinding/ItemRankingBinding.dex   |   Bin [31m0[m -> [32m2768[m bytes
+ .../databinding/ItemVideoLessonBinding.dex         |   Bin [31m0[m -> [32m2672[m bytes
+ .../databinding/ItemVocabularyBinding.dex          |   Bin [31m0[m -> [32m2672[m bytes
+ .../sealspeak/databinding/ItemWordCardBinding.dex  |   Bin [31m0[m -> [32m2604[m bytes
+ .../databinding/OnboardingPageLevelBinding.dex     |   Bin [31m0[m -> [32m2940[m bytes
+ .../databinding/OnboardingPageNicknameBinding.dex  |   Bin [31m0[m -> [32m2588[m bytes
+ .../databinding/OnboardingPageReasonBinding.dex    |   Bin [31m0[m -> [32m2948[m bytes
+ .../databinding/OnboardingPageTimeBinding.dex      |   Bin [31m0[m -> [32m2932[m bytes
+ .../debug/processDebugResources/R.txt              |  8353 [32m+++++++++[m
+ .../signing-config-versions.json                   |     1 [32m+[m
+ .../debug/processDebugResources/stableIds.txt      |  6821 [32m++++++++[m
+ .../debug/generateDebugRFile/package-aware-r.txt   |   118 [32m+[m
+ .../caches-jvm/inputs/source-to-output.tab         |   Bin [31m0[m -> [32m4096[m bytes
+ .../inputs/source-to-output.tab.keystream          |   Bin [31m0[m -> [32m4096[m bytes
+ .../inputs/source-to-output.tab.keystream.len      |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/inputs/source-to-output.tab.len     |   Bin [31m0[m -> [32m8[m bytes
+ .../inputs/source-to-output.tab.values.at          |   Bin [31m0[m -> [32m16319[m bytes
+ .../caches-jvm/inputs/source-to-output.tab_i       |   Bin [31m0[m -> [32m32768[m bytes
+ .../caches-jvm/inputs/source-to-output.tab_i.len   |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/class-attributes.tab     |   Bin [31m0[m -> [32m4096[m bytes
+ .../jvm/kotlin/class-attributes.tab.keystream      |   Bin [31m0[m -> [32m4096[m bytes
+ .../jvm/kotlin/class-attributes.tab.keystream.len  |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/class-attributes.tab.len |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/class-attributes.tab.values.at      |   Bin [31m0[m -> [32m175[m bytes
+ .../caches-jvm/jvm/kotlin/class-attributes.tab_i   |   Bin [31m0[m -> [32m32768[m bytes
+ .../jvm/kotlin/class-attributes.tab_i.len          |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab         |   Bin [31m0[m -> [32m4096[m bytes
+ .../kotlin/class-fq-name-to-source.tab.keystream   |   Bin [31m0[m -> [32m4096[m bytes
+ .../class-fq-name-to-source.tab.keystream.len      |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab.len     |   Bin [31m0[m -> [32m8[m bytes
+ .../kotlin/class-fq-name-to-source.tab.values.at   |   Bin [31m0[m -> [32m5315[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab_i       |   Bin [31m0[m -> [32m32768[m bytes
+ .../jvm/kotlin/class-fq-name-to-source.tab_i.len   |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab         |   Bin [31m0[m -> [32m4096[m bytes
+ .../kotlin/internal-name-to-source.tab.keystream   |   Bin [31m0[m -> [32m4096[m bytes
+ .../internal-name-to-source.tab.keystream.len      |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab.len     |   Bin [31m0[m -> [32m8[m bytes
+ .../kotlin/internal-name-to-source.tab.values.at   |   Bin [31m0[m -> [32m5705[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab_i       |   Bin [31m0[m -> [32m32768[m bytes
+ .../jvm/kotlin/internal-name-to-source.tab_i.len   |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/proto.tab      |   Bin [31m0[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.keystream      |   Bin [31m0[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.keystream.len  |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/proto.tab.len  |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab.values.at      |   Bin [31m0[m -> [32m22836[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/proto.tab_i    |   Bin [31m0[m -> [32m32768[m bytes
+ .../caches-jvm/jvm/kotlin/proto.tab_i.len          |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/source-to-classes.tab    |   Bin [31m0[m -> [32m4096[m bytes
+ .../jvm/kotlin/source-to-classes.tab.keystream     |   Bin [31m0[m -> [32m4096[m bytes
+ .../jvm/kotlin/source-to-classes.tab.keystream.len |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/source-to-classes.tab.len           |   Bin [31m0[m -> [32m8[m bytes
+ .../jvm/kotlin/source-to-classes.tab.values.at     |   Bin [31m0[m -> [32m5136[m bytes
+ .../caches-jvm/jvm/kotlin/source-to-classes.tab_i  |   Bin [31m0[m -> [32m32768[m bytes
+ .../jvm/kotlin/source-to-classes.tab_i.len         |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/subtypes.tab   |   Bin [31m0[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/subtypes.tab.keystream   |   Bin [31m0[m -> [32m4096[m bytes
+ .../jvm/kotlin/subtypes.tab.keystream.len          |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/subtypes.tab.len         |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/subtypes.tab.values.at   |   Bin [31m0[m -> [32m1447[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/subtypes.tab_i |   Bin [31m0[m -> [32m32768[m bytes
+ .../caches-jvm/jvm/kotlin/subtypes.tab_i.len       |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/jvm/kotlin/supertypes.tab |   Bin [31m0[m -> [32m4096[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab.keystream |   Bin [31m0[m -> [32m4096[m bytes
+ .../jvm/kotlin/supertypes.tab.keystream.len        |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab.len       |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab.values.at |   Bin [31m0[m -> [32m1482[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab_i         |   Bin [31m0[m -> [32m32768[m bytes
+ .../caches-jvm/jvm/kotlin/supertypes.tab_i.len     |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/lookups/counters.tab      |     2 [32m+[m
+ .../cacheable/caches-jvm/lookups/file-to-id.tab    |   Bin [31m0[m -> [32m4096[m bytes
+ .../caches-jvm/lookups/file-to-id.tab.keystream    |   Bin [31m0[m -> [32m4096[m bytes
+ .../lookups/file-to-id.tab.keystream.len           |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/lookups/file-to-id.tab.len          |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/lookups/file-to-id.tab.values.at    |   Bin [31m0[m -> [32m241[m bytes
+ .../cacheable/caches-jvm/lookups/file-to-id.tab_i  |   Bin [31m0[m -> [32m32768[m bytes
+ .../caches-jvm/lookups/file-to-id.tab_i.len        |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/lookups/id-to-file.tab    |   Bin [31m0[m -> [32m4096[m bytes
+ .../caches-jvm/lookups/id-to-file.tab.keystream    |   Bin [31m0[m -> [32m4096[m bytes
+ .../lookups/id-to-file.tab.keystream.len           |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/lookups/id-to-file.tab.len          |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/lookups/id-to-file.tab.values.at    |   Bin [31m0[m -> [32m2037[m bytes
+ .../cacheable/caches-jvm/lookups/id-to-file.tab_i  |   Bin [31m0[m -> [32m32768[m bytes
+ .../caches-jvm/lookups/id-to-file.tab_i.len        |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/lookups/lookups.tab       |   Bin [31m0[m -> [32m16384[m bytes
+ .../caches-jvm/lookups/lookups.tab.keystream       |   Bin [31m0[m -> [32m102400[m bytes
+ .../caches-jvm/lookups/lookups.tab.keystream.len   |   Bin [31m0[m -> [32m8[m bytes
+ .../cacheable/caches-jvm/lookups/lookups.tab.len   |   Bin [31m0[m -> [32m8[m bytes
+ .../caches-jvm/lookups/lookups.tab.values.at       |   Bin [31m0[m -> [32m18504[m bytes
+ .../cacheable/caches-jvm/lookups/lookups.tab_i     |   Bin [31m0[m -> [32m32768[m bytes
+ .../cacheable/caches-jvm/lookups/lookups.tab_i.len |   Bin [31m0[m -> [32m8[m bytes
+ .../compileDebugKotlin/cacheable/last-build.bin    |   Bin [31m0[m -> [32m18[m bytes
+ .../shrunk-classpath-snapshot.bin                  |   Bin [31m0[m -> [32m67598[m bytes
+ .../outputs/logs/manifest-merger-debug-report.txt  |   715 [32m+[m
+ .../previous-compilation-data.bin                  |   Bin [31m0[m -> [32m81297[m bytes
+ .../java/com/example/sealspeak/GrammarAdapter.kt   |    35 [32m+[m
+ .../com/example/sealspeak/GrammarDetailFragment.kt |    55 [32m+[m
+ .../java/com/example/sealspeak/GrammarFragment.kt  |    59 [32m+[m
+ .../java/com/example/sealspeak/GrammarLesson.kt    |    10 [32m+[m
+ .../java/com/example/sealspeak/HomeFragment.kt     |    32 [32m+[m
+ .../java/com/example/sealspeak/LessonsFragment.kt  |    41 [32m+[m
+ .../com/example/sealspeak/LessonsPagerAdapter.kt   |    16 [32m+[m
+ .../java/com/example/sealspeak/PointsManager.kt    |    17 [32m+[m
+ .../java/com/example/sealspeak/ProfileFragment.kt  |    67 [32m+[m
+ .../java/com/example/sealspeak/RankingAdapter.kt   |    53 [32m+[m
+ .../java/com/example/sealspeak/RankingFragment.kt  |    55 [32m+[m
+ .../main/java/com/example/sealspeak/RankingUser.kt |     7 [32m+[m
+ .../java/com/example/sealspeak/VideoFragment.kt    |    61 [32m+[m
+ .../main/java/com/example/sealspeak/VideoLesson.kt |     7 [32m+[m
+ .../com/example/sealspeak/VideoLessonActivity.kt   |    98 [32m+[m
+ .../com/example/sealspeak/VideoLessonAdapter.kt    |    35 [32m+[m
+ .../com/example/sealspeak/VocabularyAdapter.kt     |    35 [32m+[m
+ .../com/example/sealspeak/VocabularyCategory.kt    |     7 [32m+[m
+ .../example/sealspeak/VocabularyDetailFragment.kt  |    59 [32m+[m
+ .../com/example/sealspeak/VocabularyFragment.kt    |    57 [32m+[m
+ .../java/com/example/sealspeak/WordCardAdapter.kt  |    30 [32m+[m
+ app/src/main/res/drawable/ic_back.xml              |     3 [32m+[m
+ app/src/main/res/drawable/ic_home.xml              |     3 [32m+[m
+ app/src/main/res/drawable/ic_lessons.xml           |     3 [32m+[m
+ app/src/main/res/drawable/ic_profile.xml           |     3 [32m+[m
+ app/src/main/res/drawable/ic_ranking.xml           |     3 [32m+[m
+ app/src/main/res/layout/activity_video_lesson.xml  |    72 [32m+[m
+ app/src/main/res/layout/fragment_grammar.xml       |    13 [32m+[m
+ .../main/res/layout/fragment_grammar_detail.xml    |   102 [32m+[m
+ app/src/main/res/layout/fragment_home.xml          |   107 [32m+[m
+ app/src/main/res/layout/fragment_lessons.xml       |    24 [32m+[m
+ app/src/main/res/layout/fragment_profile.xml       |   102 [32m+[m
+ app/src/main/res/layout/fragment_ranking.xml       |    24 [32m+[m
+ app/src/main/res/layout/fragment_video.xml         |    13 [32m+[m
+ app/src/main/res/layout/fragment_vocabulary.xml    |    13 [32m+[m
+ .../main/res/layout/fragment_vocabulary_detail.xml |    33 [32m+[m
+ app/src/main/res/layout/item_grammar.xml           |    34 [32m+[m
+ app/src/main/res/layout/item_ranking.xml           |    45 [32m+[m
+ app/src/main/res/layout/item_video_lesson.xml      |    34 [32m+[m
+ app/src/main/res/layout/item_vocabulary.xml        |    34 [32m+[m
+ app/src/main/res/layout/item_word_card.xml         |    43 [32m+[m
+ app/src/main/res/menu/bottom_nav_menu.xml          |    24 [32m+[m
+ app/src/main/res/navigation/nav_graph.xml          |    27 [32m+[m
+ 869 files changed, 67562 insertions(+)
+
+[33mcommit 086cfb9d885bdfcfb39ba4cf4c5bb5a21a7a5551[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Tue May 5 07:15:26 2026 -0500
+
+    Barra de navegacion y funciones
+
+ .gitignore                                         | 11 [32m++[m[31m------[m
+ .idea/appInsightsSettings.xml                      |  1 [32m+[m
+ app/.gitignore                                     |  1 [31m-[m
+ app/build.gradle.kts                               | 22 [32m+++++++++[m[31m------[m
+ app/src/main/AndroidManifest.xml                   |  4 [32m+++[m
+ .../java/com/example/sealspeak/MainActivity.kt     | 18 [32m++++++++[m[31m----[m
+ .../com/example/sealspeak/OnboardingActivity.kt    |  3 [32m+[m[31m-[m
+ app/src/main/res/layout/activity_main.xml          | 33 [32m+++++++++++++[m[31m---------[m
+ app/src/main/res/values-night/themes.xml           | 14 [32m+++++[m[31m----[m
+ app/src/main/res/values/themes.xml                 | 12 [32m++++[m[31m----[m
+ settings.gradle.kts                                |  2 [32m+[m[31m-[m
+ 11 files changed, 72 insertions(+), 49 deletions(-)
+
+[33mcommit 447b4536183d49695e1ef107749245c34afb56c2[m[33m ([m[1;31mmain/main[m[33m)[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Fri Mar 13 15:30:36 2026 -0500
+
+    Cambio de Icono
+
+ app/src/main/ic_launcher-playstore.png              | Bin [31m48111[m -> [32m41212[m bytes
+ .../main/res/drawable/ic_launcher_foreground.xml    |   8 [32m++++[m[31m----[m
+ app/src/main/res/mipmap-hdpi/ic_launcher.webp       | Bin [31m3532[m -> [32m2542[m bytes
+ app/src/main/res/mipmap-hdpi/ic_launcher_round.webp | Bin [31m5248[m -> [32m4380[m bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.webp       | Bin [31m2598[m -> [32m1964[m bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher_round.webp | Bin [31m3278[m -> [32m2936[m bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.webp      | Bin [31m4796[m -> [32m3438[m bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.webp    | Bin [31m7388[m -> [32m6148[m bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.webp     | Bin [31m6520[m -> [32m4814[m bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.webp   | Bin [31m10982[m -> [32m8840[m bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp    | Bin [31m8756[m -> [32m6452[m bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.webp  | Bin [31m14524[m -> [32m11684[m bytes
+ 12 files changed, 4 insertions(+), 4 deletions(-)
+
+[33mcommit fdee922dbbbe210000ec68c0c3d8e52860f7a808[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Fri Mar 13 15:26:00 2026 -0500
+
+    Realizar encuesta Usuario en Registro
+
+ app/build.gradle.kts                               |   6 [32m+[m
+ app/src/main/AndroidManifest.xml                   |  12 [32m+[m[31m-[m
+ app/src/main/ic_launcher-playstore.png             | Bin [31m0[m -> [32m48111[m bytes
+ .../java/com/example/sealspeak/LoginActivity.kt    |  64 [32m+++++[m[31m-[m
+ .../com/example/sealspeak/OnboardingActivity.kt    |  78 [32m+++++++[m
+ .../com/example/sealspeak/OnboardingAdapter.kt     |  93 [32m++++++++[m
+ .../java/com/example/sealspeak/RegisterActivity.kt |  70 [32m++[m[31m----[m
+ .../java/com/example/sealspeak/SplashActivity.kt   |  24 [32m++[m[31m-[m
+ .../main/res/drawable/ic_launcher_background.xml   | 236 [32m++++++[m[31m---------------[m
+ .../main/res/drawable/ic_launcher_foreground.xml   | 111 [32m+++++++[m[31m---[m
+ app/src/main/res/layout/activity_login.xml         | 114 [32m++++++++++[m
+ app/src/main/res/layout/activity_onboarding.xml    |  22 [32m++[m
+ app/src/main/res/layout/activity_register.xml      |  48 [32m++[m[31m---[m
+ app/src/main/res/layout/onboarding_page_level.xml  |  75 [32m+++++++[m
+ .../main/res/layout/onboarding_page_nickname.xml   |  60 [32m++++++[m
+ app/src/main/res/layout/onboarding_page_reason.xml |  75 [32m+++++++[m
+ app/src/main/res/layout/onboarding_page_time.xml   |  75 [32m+++++++[m
+ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   6 [32m+[m[31m-[m
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   6 [32m+[m[31m-[m
+ app/src/main/res/mipmap-hdpi/ic_launcher.webp      | Bin [31m1404[m -> [32m3532[m bytes
+ .../main/res/mipmap-hdpi/ic_launcher_round.webp    | Bin [31m2898[m -> [32m5248[m bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.webp      | Bin [31m982[m -> [32m2598[m bytes
+ .../main/res/mipmap-mdpi/ic_launcher_round.webp    | Bin [31m1772[m -> [32m3278[m bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.webp     | Bin [31m1900[m -> [32m4796[m bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.webp   | Bin [31m3918[m -> [32m7388[m bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.webp    | Bin [31m2884[m -> [32m6520[m bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.webp  | Bin [31m5914[m -> [32m10982[m bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp   | Bin [31m3844[m -> [32m8756[m bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.webp | Bin [31m7778[m -> [32m14524[m bytes
+ 29 files changed, 890 insertions(+), 285 deletions(-)
+
+[33mcommit c77d719e135e9068e61d0527533314c986256aa4[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Fri Mar 13 13:29:03 2026 -0500
+
+    Mejora interfaz
+
+ app/src/main/AndroidManifest.xml                   |  10 [32m+[m[31m-[m
+ .../java/com/example/sealspeak/LoginActivity.kt    |  63 [32m++++++++[m
+ .../java/com/example/sealspeak/MainActivity.kt     |  14 [32m+[m[31m-[m
+ .../java/com/example/sealspeak/SplashActivity.kt   |  25 [32m++++[m
+ app/src/main/res/drawable/ic_google.xml            |   4 [32m+[m[31m-[m
+ app/src/main/res/drawable/logo_sealspeak.xml       |  88 [32m++++++++++++[m
+ app/src/main/res/layout/activity_main.xml          |  26 [32m++[m[31m--[m
+ app/src/main/res/layout/activity_register.xml      | 160 [32m++++++++++++++[m[31m-------[m
+ app/src/main/res/layout/activity_splash.xml        |  24 [32m++++[m
+ app/src/main/res/values/strings.xml                |   1 [32m+[m
+ 10 files changed, 338 insertions(+), 77 deletions(-)
+
+[33mcommit b4f037c6c56505f8e1744d41efb757132b1da75b[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Fri Mar 13 10:31:58 2026 -0500
+
+    Creacion de Registro con Google
+
+ .gitignore                                         |  3 [32m+[m
+ .idea/appInsightsSettings.xml                      | 26 [32m+++++++[m
+ .idea/deploymentTargetSelector.xml                 | 10 [32m+++[m
+ .idea/deviceManager.xml                            | 13 [32m++++[m
+ .idea/gradle.xml                                   |  1 [32m+[m
+ .idea/misc.xml                                     | 10 [32m++[m[31m-[m
+ app/build.gradle.kts                               | 11 [32m+++[m
+ app/src/main/AndroidManifest.xml                   |  2 [32m+[m[31m-[m
+ .../java/com/example/sealspeak/RegisterActivity.kt | 87 [32m++++++++++++++++++++++[m
+ app/src/main/res/drawable/ic_google.xml            | 30 [32m++++++++[m
+ app/src/main/res/layout/activity_register.xml      | 65 [32m++++++++++++++++[m
+ build.gradle.kts                                   |  1 [32m+[m
+ 12 files changed, 256 insertions(+), 3 deletions(-)
+
+[33mcommit b5c664a1e50d42a6634e2c4b01eba1a9f04829bb[m
+Author: Sebastian <salexandervelasquez@ucundinamarca.edu.co>
+Date:   Thu Mar 12 13:24:02 2026 -0500
+
+    Creacion de proyecto AndroidStudio
+
+ .gitignore                                         |  15 [32m++[m
+ .idea/.gitignore                                   |   3 [32m+[m
+ .idea/AndroidProjectSystem.xml                     |   6 [32m+[m
+ .idea/compiler.xml                                 |   6 [32m+[m
+ .idea/gradle.xml                                   |  17 [32m++[m
+ .idea/misc.xml                                     |  10 [32m+[m
+ .idea/runConfigurations.xml                        |  17 [32m++[m
+ .idea/vcs.xml                                      |   6 [32m+[m
+ app/.gitignore                                     |   1 [32m+[m
+ app/build.gradle.kts                               |  47 [32m++++[m
+ app/proguard-rules.pro                             |  21 [32m++[m
+ .../example/sealspeak/ExampleInstrumentedTest.kt   |  24 [32m++[m
+ app/src/main/AndroidManifest.xml                   |  25 [32m++[m
+ .../java/com/example/sealspeak/MainActivity.kt     |  20 [32m++[m
+ .../main/res/drawable/ic_launcher_background.xml   | 170 [32m++++++++++++++[m
+ .../main/res/drawable/ic_launcher_foreground.xml   |  30 [32m+++[m
+ app/src/main/res/layout/activity_main.xml          |  19 [32m++[m
+ app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml |   6 [32m+[m
+ .../res/mipmap-anydpi-v26/ic_launcher_round.xml    |   6 [32m+[m
+ app/src/main/res/mipmap-hdpi/ic_launcher.webp      | Bin [31m0[m -> [32m1404[m bytes
+ .../main/res/mipmap-hdpi/ic_launcher_round.webp    | Bin [31m0[m -> [32m2898[m bytes
+ app/src/main/res/mipmap-mdpi/ic_launcher.webp      | Bin [31m0[m -> [32m982[m bytes
+ .../main/res/mipmap-mdpi/ic_launcher_round.webp    | Bin [31m0[m -> [32m1772[m bytes
+ app/src/main/res/mipmap-xhdpi/ic_launcher.webp     | Bin [31m0[m -> [32m1900[m bytes
+ .../main/res/mipmap-xhdpi/ic_launcher_round.webp   | Bin [31m0[m -> [32m3918[m bytes
+ app/src/main/res/mipmap-xxhdpi/ic_launcher.webp    | Bin [31m0[m -> [32m2884[m bytes
+ .../main/res/mipmap-xxhdpi/ic_launcher_round.webp  | Bin [31m0[m -> [32m5914[m bytes
+ app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp   | Bin [31m0[m -> [32m3844[m bytes
+ .../main/res/mipmap-xxxhdpi/ic_launcher_round.webp | Bin [31m0[m -> [32m7778[m bytes
+ app/src/main/res/values-night/themes.xml           |   7 [32m+[m
+ app/src/main/res/values/colors.xml                 |   5 [32m+[m
+ app/src/main/res/values/strings.xml                |   3 [32m+[m
+ app/src/main/res/values/themes.xml                 |   9 [32m+[m
+ app/src/main/res/xml/backup_rules.xml              |  13 [32m++[m
+ app/src/main/res/xml/data_extraction_rules.xml     |  19 [32m++[m
+ .../java/com/example/sealspeak/ExampleUnitTest.kt  |  17 [32m++[m
+ build.gradle.kts                                   |   4 [32m+[m
+ gradle.properties                                  |  15 [32m++[m
+ gradle/gradle-daemon-jvm.properties                |  12 [32m+[m
+ gradle/libs.versions.toml                          |  24 [32m++[m
+ gradle/wrapper/gradle-wrapper.jar                  | Bin [31m0[m -> [32m45457[m bytes
+ gradle/wrapper/gradle-wrapper.properties           |   9 [32m+[m
+ gradlew                                            | 251 [32m+++++++++++++++++++++[m
+ gradlew.bat                                        |  94 [32m++++++++[m
+ settings.gradle.kts                                |  26 [32m+++[m
+ 45 files changed, 957 insertions(+)

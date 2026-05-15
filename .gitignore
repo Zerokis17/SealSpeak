@@ -1,0 +1,17 @@
+# Android
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+app/build
+/captures
+.externalNativeBuild
+.cxx
+
+# Firebase - claves sensibles
+google-services.json
+
+# API Keys
+local.properties

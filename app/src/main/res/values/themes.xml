@@ -1,0 +1,11 @@
+<resources>
+    <style name="Base.Theme.SealSpeak" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#0077B6</item>
+        <item name="colorPrimaryVariant">#005F8E</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorSecondary">#E0F7FA</item>
+        <item name="android:windowBackground">#E0F7FA</item>
+    </style>
+
+    <style name="Theme.SealSpeak" parent="Base.Theme.SealSpeak" />
+</resources>
